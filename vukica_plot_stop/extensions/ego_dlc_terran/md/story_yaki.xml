@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <replace sel="//cue[@name='Ch9_1_Conversation_Section_Main']/actions/do_if[3]">
+    <add_player_choice text="{30225,3035}" section="section_outro" position="top_right" highlighted="true"/>
+  </replace>
+  <remove sel="//cue[@name='Ch9_1_Conversation_Section_Main']/actions/do_else"/>
+</diff>

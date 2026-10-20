@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<diff>
+  <add sel="//macros">
+    <macro name="character_player_boron_gamestart1_nila_macro" class="player">
+      <component ref="character_player_boron_suit_01"/>
+      <properties>
+        <identification name="{30253,102}" race="boron" faction="player" female="true" image="briefing_nila_ti"/>
+        <bonemods>
+          <bonemod type="Tentacles" exact="1.0">
+            <bones>
+              <bone name="boron_body_r_mouth_back_tentacle_01_bone"/>
+              <bone name="boron_body_r_mouth_front_tentacle_01_bone"/>
+              <bone name="boron_body_l_mouth_back_tentacle_01_bone"/>
+              <bone name="boron_body_l_mouth_front_tentacle_01_bone"/>
+              <bone name="boron_body_mouth_middle_tentacle_01_bone"/>
+            </bones>
+          </bonemod>
+        </bonemods>
+        <render>
+          <parameter type="int" name="randomhue" value="0"/>
+          <parameter type="float" name="base_hue_shift" value="0.0"/>
+          <parameter type="float" name="glow_hue_shift" value="0.0"/>
+          <parameter type="float" name="shiftduration" value="10.0"/>
+          <parameter type="float" name="shiftscale" value="40.0"/>
+        </render>
+        <models>
+          <model type="head" ref="assets/characters/boron/heads/char_bor_suit_head_nila"/>
+          <model type="torso" ref="assets/characters/boron/bodies/char_bor_suit_body_nila"/>
+          <model type="props" ref="none"/>
+        </models>
+        <spacesuit macro="ship_bor_xs_spacesuit_01_a_macro"/>
+        <sounds>
+          <walking ref="footstep_player_walking_boron_01"/>
+          <running ref="footstep_player_running_boron_01"/>
+          <crouching ref=""/>
+          <walkstep ref=""/>
+          <runstep ref=""/>
+          <crouchstep ref=""/>
+          <jump ref="footstep_player_jump_boron_01"/>
+          <fallstep ref="footstep_player_fallslow_boron_01"/>
+          <heavyfallstep ref="footstep_player_fallfast_boron_01"/>
+          <tocrouch ref=""/>
+          <fromcrouch ref=""/>
+        </sounds>
+      </properties>
+      <connections>
+        <connection ref="computer">
+          <macro ref="entity_betty_macro" connection="player"/>
+        </connection>
+      </connections>
+    </macro>
+  </add>
+</diff>

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <remove sel="//mdscript/cues/cue/@version"/>
+  <replace sel="//event_cue_completed">
+    <event_cue_signalled cue="md.Setup.GameStart"/>
+  </replace>
+  <replace sel="//mdscript/cues/cue/actions[1]">
+    <actions>
+      </actions>
+  </replace>
+  <replace sel="//mdscript/cues/cue/delay">
+    <cues>
+      <cue name="SetupMap">
+        <actions>
+          <set_value name="$InitialMap" exact="[                        macro.cluster_110_sector001_macro,                        macro.cluster_115_sector001_macro,                        macro.cluster_114_sector001_macro                        ]"/>
+          <run_actions ref="md.LIB_Generic.UncoverMap_SectorsAndGates">
+            <param name="InitialMap" value="$InitialMap"/>
+            <param name="UncoverStationFaction" value="faction.pioneers"/>
+          </run_actions>
+        </actions>
+      </cue>
+      <cue name="Setup_Start_Station">
+        <actions>
+          <set_value name="this.$Station" exact="player.station"/>
+          <assert value="this.$Station.exists" text="'Player was not placed on a station'"/>
+          <do_if value="this.$Station">
+            <set_value name="this.$Interior" exact="player.room.dynamicinterior"/>
+            <do_if value="this.$Interior">
+              <set_dynamic_interior_persistent object="this.$Station" interior="this.$Interior" persistent="true"/>
+            </do_if>
+          </do_if>
+        </actions>
+        <delay exact="2s"/>
+        <actions>
+          <find_dockingbay name="this.$DockingBay" object="this.$Station" checkoperational="true" walkable="true" comment="walkable=true ignores launchtubes!" required="true">
+            <match_any>
+              <match_dock size="tag.dock_s"/>
+            </match_any>
+          </find_dockingbay>
+          <do_if value="this.$DockingBay">
+            <create_loadout result="this.$Loadout" comment="Rapier (Scout): ship_ter_s_scout_01_a_macro">
+              <macros>
+                <engine macro="engine_ter_s_travel_01_mk1_macro" path="../con_engine_01"/>
+                <weapon macro="weapon_ter_s_laser_01_mk1_macro" path="../con_weapon_01"/>
+                <shield macro="shield_ter_s_standard_01_mk1_macro" path="../con_shield_01"/>
+              </macros>
+              <ammunition>
+                <ammunition macro="eq_arg_satellite_01_macro" exact="5"/>
+              </ammunition>
+              <software>
+                <software ware="software_flightassistmk1"/>
+                <software ware="software_scannerlongrangemk2"/>
+                <software ware="software_scannerobjectmk1"/>
+              </software>
+              <virtualmacros>
+                <thruster macro="thruster_gen_s_allround_01_mk1_macro"/>
+              </virtualmacros>
+              <crew>
+                <crew role="marine" exact="0"/>
+                <crew role="service" exact="0"/>
+              </crew>
+            </create_loadout>
+            <create_ship name="$PlayerShip" dock="this.$DockingBay" macro="ship_ter_s_scout_01_a_macro">
+              <owner exact="faction.player" overridenpc="true"/>
+              <loadout loadout="this.$Loadout"/>
+            </create_ship>
+          </do_if>
+        </actions>
+      </cue>
+    </cues>
+  </replace>
+  <remove sel="//mdscript/cues/cue/actions[2]"/>
+  <remove sel="//patch"/>
+  <remove sel="//cues[2]"/>
+</diff>

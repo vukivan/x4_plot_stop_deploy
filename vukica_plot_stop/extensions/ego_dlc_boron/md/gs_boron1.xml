@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <remove sel="//mdscript/cues/cue/@version"/>
+  <add sel="//mdscript/cues/cue" type="@comment">Boron Adventurer Extraordinaire</add>
+  <replace sel="//conditions/event_cue_completed">
+    <event_cue_signalled cue="md.Setup.GameStart"/>
+  </replace>
+  <replace sel="//mdscript/cues/cue/actions[1]">
+    <actions>
+      </actions>
+  </replace>
+  <replace sel="//mdscript/cues/cue/delay">
+    <cues>
+      <cue name="SetupMap">
+        <actions>
+          <set_value name="$InitialMap" exact="[                        macro.cluster_601_sector001_macro,                        macro.cluster_602_sector001_macro,                        macro.cluster_603_sector001_macro,                        macro.cluster_604_sector001_macro,                        macro.cluster_605_sector001_macro                        ]"/>
+          <run_actions ref="md.LIB_Generic.UncoverMap_SectorsAndGates">
+            <param name="InitialMap" value="$InitialMap"/>
+            <param name="UncoverStationFaction" value="faction.boron"/>
+            <param name="UncoverShipyardsAndWharfs" value="true" comment="optional"/>
+            <param name="UncoverTradeStations" value="true" comment="optional"/>
+            <param name="UncoverHighways" value="true"/>
+          </run_actions>
+        </actions>
+      </cue>
+    </cues>
+  </replace>
+  <remove sel="//mdscript/cues/cue/actions[2]"/>
+  <remove sel="//patch"/>
+  <remove sel="//cues[2]"/>
+</diff>

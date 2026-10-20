@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <remove sel="//cue[@name='Setup_Values_GS_Information']/actions/do_if"/>
+  <remove sel="//cue[@name='Setup_Values_GS_Information']/actions/do_elseif"/>
+</diff>

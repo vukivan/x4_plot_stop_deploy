@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <replace sel="//mdscript/cues/cue/conditions/event_cue_completed">
+    <event_cue_signalled cue="md.Setup.GameStart"/>
+  </replace>
+  <replace sel="//set_value[@name='$debugchance']">
+    <debug_text text="'Herald gamestart'"/>
+  </replace>
+  <remove sel="//set_value[@name='$DebugChance']"/>
+  <remove sel="//set_value[@name='$MissionCue']"/>
+  <remove sel="//set_value[@name='$Page']"/>
+  <remove sel="//mdscript/cues/cue/actions/set_value"/>
+  <replace sel="//cue[@name='Setup']/@name">SetupHQ</replace>
+  <replace sel="//cue[@name='SetupHQ']/actions/find_sector/@comment">HE</replace>
+  <remove sel="//find_station/@godstationentry"/>
+  <add sel="//find_station" type="@owner">faction.player</add>
+  <remove sel="//cue[@name='SetupHQ']/actions/do_if"/>
+  <replace sel="//cue[@name='Setup_Complete']">
+    <cue name="SetupPlayerShip">
+      <delay exact="1s"/>
+      <actions>
+        <find_dockingbay name="$DockingBays" object="$HQ" checkoperational="true" multiple="true" walkable="true" comment="walkable=true ignores launchtubes!" required="true">
+          <match_any>
+            <match_dock size="tag.dock_m"/>
+          </match_any>
+        </find_dockingbay>
+        <do_if value="$DockingBays.count">
+          <create_ship name="$PlayerShip" sector="$HQ.sector" dock="$DockingBays.random" macro="ship_bor_m_corvette_02_a_macro" capturable="false" commandeerable="false">
+            <owner exact="faction.player" overridenpc="true"/>
+            <loadout ref="story_boron_playerreward_m"/>
+            <people>
+              <fillpercent exact="0"/>
+            </people>
+          </create_ship>
+        </do_if>
+      </actions>
+    </cue>
+  </replace>
+  <remove sel="//cue[@name='Setup_Signals']"/>
+  <remove sel="//cue[@name='Setup_QueenShip']"/>
+  <remove sel="//cue[@name='Setup_QueenShip_ThroneRoom']"/>
+  <remove sel="//cue[@name='Setup_QueenShip_BriefingRoom']"/>
+  <remove sel="//cue[@name='Setup_BosoTa']"/>
+  <remove sel="//cue[@name='Setup_Actors']"/>
+  <replace sel="//cue[@name='Setup_PlayerPosition_LeaveControlPosition']/@name">SetupManager</replace>
+  <add sel="//cue[@name='SetupManager']" type="@onfail">cancel</add>
+  <replace sel="//cue[@name='SetupManager']/conditions/check_any">
+    <check_value value="$HQ"/>
+  </replace>
+  <remove sel="//cue_is_complete[@cue='Setup_QueenShip_ThroneRoom']"/>
+  <remove sel="//cue_is_complete"/>
+  <add sel="//cue[@name='SetupManager']/actions" pos="before">
+    <delay exact="1s"/>
+  </add>
+  <replace sel="//cue[@name='SetupManager']/actions/do_if">
+    <create_control_entity object="$HQ" post="controlpost.manager">
+      <select tags="controlpost.manager.tag" faction="faction.player"/>
+      <owner exact="$HQ.owner"/>
+    </create_control_entity>
+  </replace>
+  <remove sel="//do_else"/>
+  <remove sel="//cue[@name='Setup_PlayerPosition']"/>
+  <remove sel="//cue[@name='Setup_Map']"/>
+  <replace sel="//cue[@name='Idle_Lines']">
+    <cue name="SetupMap">
+      <actions>
+        <set_value name="$InitialMap" exact="[                        macro.cluster_606_sector001_macro,                        macro.cluster_606_sector002_macro,                        macro.cluster_606_sector003_macro,                        macro.cluster_607_sector001_macro,                        macro.cluster_608_sector001_macro,                        macro.cluster_609_sector001_macro,                        macro.cluster_601_sector001_macro,                        macro.cluster_602_sector001_macro,                        macro.cluster_603_sector001_macro,                        macro.cluster_604_sector001_macro,                        macro.cluster_605_sector001_macro,                        macro.cluster_31_sector001_macro                        ]"/>
+        <run_actions ref="md.LIB_Generic.UncoverMap_SectorsAndGates">
+          <param name="InitialMap" value="$InitialMap"/>
+          <param name="UncoverStationFaction" value="faction.boron"/>
+          <param name="UncoverShipyardsAndWharfs" value="true" comment="optional"/>
+          <param name="UncoverTradeStations" value="true" comment="optional"/>
+          <param name="UncoverHighways" value="true"/>
+        </run_actions>
+      </actions>
+    </cue>
+  </replace>
+  <remove sel="//cue[@name='Ch1_HeraldGathering']"/>
+  <remove sel="//cue[@name='Ch2_Throneroom']"/>
+</diff>

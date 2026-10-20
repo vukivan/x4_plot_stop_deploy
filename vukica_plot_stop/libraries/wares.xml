@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<diff>
+  <!-- Make the Boron M corvette (ship_bor_m_corvette_02_a) a normal purchasable/blueprint ship.
+       Strips 'limited', 'nocustomgamestart', and 'nodiplomacyblueprint'; keeps 'ship',
+       matching the sibling purchasable Boron ships. -->
+  <replace sel="//ware[@id='ship_bor_m_corvette_02_a']/@tags">ship noplayerbuild</replace>
+  <!-- Assign an owner faction so a Boron shipyard/wharf actually stocks the blueprint. -->
+  <replace sel="//ware[@id='ship_bor_m_corvette_02_a']/owner/@faction">boron</replace>
+</diff>
