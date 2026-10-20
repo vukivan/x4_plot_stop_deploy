@@ -56,6 +56,8 @@
   <remove sel="//gamestart[@id='x4ep1_gamestart_boron1']/custom"/>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron2']/info/item[@name='{1021,1}']/@value">{20003,310001}</replace>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron2']/info/item[@name='{1021,2}']/@value">{20101,51001} {20111,1601} \({20221,3021}\)</replace>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_boron2']/cutscene"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_boron2']/intro"/>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron2']/location/@sector">cluster_31_sector001_macro</replace>
   <remove sel="//gamestart[@id='x4ep1_gamestart_boron2']/location/@docked"/>
   <add sel="//gamestart[@id='x4ep1_gamestart_boron2']/location" type="@station">station_pla_headquarters_base_01_macro</add>
@@ -68,7 +70,35 @@
     <interior module="landmarks_player_hq_01_research_macro" corridor="room_arg_corridor_01_macro" door="con_room_01" room="room_gen_boronoffice_01_macro" name="{20007,1171}"/>
   </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_boron2']/player/inventory/ware[@ware='inv_unstablecrystal']"/>
-  <remove sel="//gamestart[@id='x4ep1_gamestart_hyperion']/info/item[5]"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_pirate1']/cutscene"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_pirate1']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_pirate2']/cutscene"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_pirate2']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_terran1']/cutscene"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_terran1']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_terran2']/cutscene"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_terran2']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_split1']/cutscene"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_split1']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_split2']/cutscene"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_split2']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_dlc_mini_02']/cutscene"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_dlc_mini_02']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_hyperion']/info/item[6]"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_hyperion']/cutscene"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_hyperion']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_intro']/cutscene"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_intro']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_tutorial']/cutscene"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_tutorial']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_trade']/cutscene"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_trade']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_fight']/cutscene"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_fight']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_discover']/cutscene"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_discover']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_scientist']/cutscene"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_scientist']/intro"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/known/parameters/space/sector[@sector='cluster_601_sector001_macro']/dependencies"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/known/parameters/space/sector[@sector='cluster_602_sector001_macro']/dependencies"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/known/parameters/space/sector[@sector='cluster_603_sector001_macro']/dependencies"/>
@@ -80,8 +110,11 @@
   <remove sel="//gamestart[@id='custom_budgeted']/budget/known/parameters/space/sector[@sector='cluster_607_sector001_macro']/dependencies"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/known/parameters/space/sector[@sector='cluster_608_sector001_macro']/dependencies"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/known/parameters/space/sector[@sector='cluster_609_sector001_macro']/dependencies"/>
+  <remove sel="//gamestart[@id='custom_budgeted']/budget/groups/group[@id='arcadian_endeavours']"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/story[@name='{1021,13401}']"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/story[@name='{1021,13411}']"/>
+  <remove sel="//gamestart[@id='custom_budgeted']/budget/story[@name='{1021,13101}']"/>
+  <remove sel="//gamestart[@id='custom_budgeted']/budget/story[@name='{1021,13111}']"/>
   <remove sel="//sector[@sector='cluster_601_sector001_macro']/dependencies"/>
   <remove sel="//sector[@sector='cluster_602_sector001_macro']/dependencies"/>
   <remove sel="//sector[@sector='cluster_603_sector001_macro']/dependencies"/>
@@ -93,7 +126,10 @@
   <remove sel="//sector[@sector='cluster_607_sector001_macro']/dependencies"/>
   <remove sel="//sector[@sector='cluster_608_sector001_macro']/dependencies"/>
   <remove sel="//sector[@sector='cluster_609_sector001_macro']/dependencies"/>
+  <remove sel="//group[@id='arcadian_endeavours']"/>
   <remove sel="//gamestart[@id='custom_creative']/budget/groups/group[@id='kingdom_end_situation']"/>
   <remove sel="//story[@name='{1021,13401}']"/>
   <remove sel="//story[@name='{1021,13411}']"/>
+  <remove sel="//story[@name='{1021,13101}']"/>
+  <remove sel="//story[@name='{1021,13111}']"/>
 </diff>

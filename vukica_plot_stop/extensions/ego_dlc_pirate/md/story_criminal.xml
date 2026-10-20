@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <replace sel="//actions/set_value[@name='$story_criminal_wildcard']/@exact">1</replace>
+  <replace sel="//actions/set_value[@name='$story_criminal_arrested_curs']/@exact">0</replace>
+  <add sel="//cue[@name='Setup_RaiderHubShip']/actions[1]" pos="before">
+    <conditions>
+      <check_value value="not $HasCustomGamestartSkip"/>
+    </conditions>
+  </add>
+  <replace sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions/do_if/@value">false</replace>
+</diff>

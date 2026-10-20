@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <remove sel="//cue[@name='Gate_PlayerApproach']"/>
+  <remove sel="//cue[@name='Gate_intro_Debug2']"/>
+  <remove sel="//cue[@name='Gate_Intro']"/>
+</diff>
