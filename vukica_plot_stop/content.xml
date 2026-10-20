@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<content id="vukica_queendom_return" name="Queendom Return" description="Tired of 10% of the map being locked behind a plot. Want to go to Kingdom End right now? Well this is the mod for you!" author="vukica" version="100" date="2026-10-07" save="0">
+<content id="vukica_plot_stop" name="Plot Stop" description="Stops all story quests in the game. Enjoy the sandbox!" author="vukica" version="100" date="2026-10-07" save="0">
 	<dependency id="ego_dlc_boron" optional="false" name="Kingdom End"/>
 	<dependency id="ego_dlc_terran" optional="false" name="Cradle of Humanity"/>
 </content>
