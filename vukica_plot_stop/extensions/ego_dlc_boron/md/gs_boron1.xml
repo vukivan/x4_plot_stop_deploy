@@ -13,7 +13,7 @@
     <cues>
       <cue name="SetupMap">
         <actions>
-          <set_value name="$InitialMap" exact="[                        macro.cluster_601_sector001_macro,                        macro.cluster_602_sector001_macro,                        macro.cluster_603_sector001_macro,                        macro.cluster_604_sector001_macro,                        macro.cluster_605_sector001_macro                        ]"/>
+          <set_value name="$InitialMap" exact="[                        macro.cluster_601_sector001_macro,                        macro.cluster_602_sector001_macro,                        macro.cluster_603_sector001_macro,                        macro.cluster_604_sector001_macro,                        macro.cluster_605_sector001_macro,                        macro.cluster_31_sector001_macro                        ]"/>
           <run_actions ref="md.LIB_Generic.UncoverMap_SectorsAndGates">
             <param name="InitialMap" value="$InitialMap"/>
             <param name="UncoverStationFaction" value="faction.boron"/>

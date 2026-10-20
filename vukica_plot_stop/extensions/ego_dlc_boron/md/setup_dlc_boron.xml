@@ -2,4 +2,28 @@
 <diff>
   <replace sel="//actions/set_value[@name='$story_queendom_returned']/@exact">true</replace>
   <replace sel="//actions/set_value[@name='$story_boron_wayfinder']/@exact">false</replace>
+  <add sel="//cue[@name='WaresAllocationPatch_KE']" pos="before">
+    <cue name="WatchfulGaze_Derelict" namespace="this" mapeditor="false">
+      <conditions>
+        <event_universe_generated/>
+        <check_value value="player.galaxy.macro == macro.xu_ep2_universe_macro" comment="only in main-galaxy"/>
+      </conditions>
+      <actions>
+        <find_sector name="$WatchfulGazeSector" macro="macro.cluster_601_sector001_macro" space="player.galaxy" extension="'ego_dlc_boron'" required="true"/>
+        <create_ship name="$AbandonedBoronShip" macro="ship_bor_s_miner_solid_01_story_macro" sector="$WatchfulGazeSector">
+          <owner exact="faction.ownerless"/>
+          <loadout ref="story_abandoned_boron_ship"/>
+          <pilot actor="null"/>
+          <safepos x="-25865m" y="0m" z="110856m"/>
+          <rotation yaw="[-90deg,90deg].randominrange" roll="[-8deg,8deg].randominrange"/>
+        </create_ship>
+        <set_object_hull object="$AbandonedBoronShip" exact="33"/>
+        <add_to_group groupname="global.$IgnoredAbandonedShips" object="$AbandonedBoronShip"/>
+        <create_object name="$BoronWreck" macro="macro.landmarks_bor_xl_carrier_01_macro" owner="faction.ownerless" sector="$WatchfulGazeSector">
+          <safepos x="137080m" y="1000m" z="-185867m"/>
+          <rotation pitch="[-15deg,15deg].randominrange" roll="7deg" yaw="[0deg,360deg].randominrange"/>
+        </create_object>
+      </actions>
+    </cue>
+  </add>
 </diff>
