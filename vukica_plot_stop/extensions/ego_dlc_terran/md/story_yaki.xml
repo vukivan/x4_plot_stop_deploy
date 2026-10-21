@@ -1,7 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <diff>
-  <replace sel="//cue[@name='Ch9_1_Conversation_Section_Main']/actions/do_if[3]">
-    <add_player_choice text="{30225,3035}" section="section_outro" position="top_right" highlighted="true"/>
-  </replace>
-  <remove sel="//cue[@name='Ch9_1_Conversation_Section_Main']/actions/do_else"/>
+  <replace sel="//actions/set_value[@name='$story_yaki_complete']/@exact">true</replace>
+  <replace sel="//actions/set_value[@name='$HasCustomGamestartSkip']/@exact">true</replace>
+  <add sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions/do_if/do_if" pos="before">
+    <do_if value="faction.yaki.relationto.{faction.player} lt faction.yaki.relation.neutral.mid">
+      <set_faction_relation faction="faction.yaki" otherfaction="faction.player" value="faction.yaki.relation.neutral.mid"/>
+    </do_if>
+  </add>
 </diff>

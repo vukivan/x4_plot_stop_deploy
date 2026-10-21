@@ -117,6 +117,8 @@
   <remove sel="//gamestart[@id='custom_budgeted']/budget/known/parameters/space/sector[@sector='cluster_706_sector001_macro']/dependencies"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/known/parameters/space/sector[@sector='cluster_708_sector001_macro']/dependencies"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/known/parameters/space/sector[@sector='cluster_740_sector001_macro']/dependencies"/>
+  <remove sel="//gamestart[@id='custom_budgeted']/budget/groups/group[@id='yaki_situation']"/>
+  <remove sel="//gamestart[@id='custom_budgeted']/budget/groups/group[@id='terraforming_situation']"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/groups/group[@id='arcadian_endeavours']"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/groups/group[@id='kingdom_end_situation']"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/groups/group[@id='timelines_situation']"/>
@@ -129,6 +131,8 @@
   <remove sel="//gamestart[@id='custom_budgeted']/budget/story[@name='{1021,13511}']"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/story[@name='{1021,13401}']"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/story[@name='{1021,13411}']"/>
+  <remove sel="//gamestart[@id='custom_budgeted']/budget/story[@name='{1021,12901}']"/>
+  <remove sel="//gamestart[@id='custom_budgeted']/budget/story[@name='{1021,13001}']"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/story[@name='{1021,13101}']"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/story[@name='{1021,13111}']"/>
   <remove sel="//sector[@sector='cluster_601_sector001_macro']/dependencies"/>
@@ -150,6 +154,8 @@
   <remove sel="//sector[@sector='cluster_706_sector001_macro']/dependencies"/>
   <remove sel="//sector[@sector='cluster_708_sector001_macro']/dependencies"/>
   <remove sel="//sector[@sector='cluster_740_sector001_macro']/dependencies"/>
+  <remove sel="//group[@id='yaki_situation']"/>
+  <remove sel="//group[@id='terraforming_situation']"/>
   <remove sel="//group[@id='arcadian_endeavours']"/>
   <remove sel="//group[@id='kingdom_end_situation']"/>
   <remove sel="//group[@id='timelines_situation']"/>
@@ -162,6 +168,8 @@
   <remove sel="//story[@name='{1021,13511}']"/>
   <remove sel="//story[@name='{1021,13401}']"/>
   <remove sel="//story[@name='{1021,13411}']"/>
+  <remove sel="//story[@name='{1021,12901}']"/>
+  <remove sel="//story[@name='{1021,13001}']"/>
   <remove sel="//story[@name='{1021,13101}']"/>
   <remove sel="//story[@name='{1021,13111}']"/>
 </diff>

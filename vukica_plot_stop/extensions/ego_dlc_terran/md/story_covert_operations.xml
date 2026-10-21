@@ -1,0 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <replace sel="//actions/set_value[@name='$HasCustomGamestartSkip']/@exact">                    $story_covert_ops_war or                    $story_covert_ops_argon_schism or                    $story_covert_ops_neutral or                    (player.module != 'custom_budgeted' and player.module != 'custom_creative')</replace>
+</diff>

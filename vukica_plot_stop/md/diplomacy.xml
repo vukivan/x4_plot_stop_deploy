@@ -1,5 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<diff>
-  <remove sel="//cue[@name='CustomGamestart_StoryState']/conditions"/>
-  <replace sel="//do_if[@value='gamestart.storystate.story_diplomacy_network']/@value">gamestart.storystate.story_diplomacy_network or (player.module != 'custom_budgeted' and player.module != 'custom_creative')</replace>
-</diff>
