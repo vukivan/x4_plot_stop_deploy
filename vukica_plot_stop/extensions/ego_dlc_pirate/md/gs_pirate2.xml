@@ -171,6 +171,7 @@
   <add sel="//cue[@name='Ch2_ShipToSteal_Undock']">
     <actions>
       <set_faction_relation faction="faction.ministry" otherfaction="faction.player" value="-0.1"/>
+      <remove_value name="md.$GlobalHintsDND"/>
     </actions>
   </add>
   <remove sel="//cue[@name='Ch3_Raider']"/>
