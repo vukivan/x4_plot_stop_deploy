@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <replace sel="//cue[@name='Start']/actions/do_if">
+    <cancel_cue cue="Start"/>
+  </replace>
+  <add sel="//set_value[@name='$DebugChance']" pos="before">
+    <add_blueprints wares="[ware.ship_gen_s_racer_01_a, ware.engine_gen_s_racer_01_mk2, ware.shield_gen_s_racer_01_mk1,]"/>
+  </add>
+  <add sel="//set_value[@name='$DebugChance']" pos="before">
+    <add_blueprints wares="[ware.ship_ter_s_xperimental_01_a, ware.engine_ter_s_virtual_01_mk1, ware.shield_ter_s_xperimental_01_mk5, ware.weapon_ter_s_laser_02_mk1, ware.weapon_ter_s_plasma_01_mk1]"/>
+  </add>
+</diff>

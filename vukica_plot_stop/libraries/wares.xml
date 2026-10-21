@@ -1,9 +1,287 @@
 <?xml version="1.0" encoding="utf-8"?>
 <diff>
-  <!-- Make the Boron M corvette (ship_bor_m_corvette_02_a) a normal purchasable/blueprint ship.
-       Strips 'limited', 'nocustomgamestart', and 'nodiplomacyblueprint'; keeps 'ship',
-       matching the sibling purchasable Boron ships. -->
   <replace sel="//ware[@id='ship_bor_m_corvette_02_a']/@tags">ship noplayerbuild</replace>
-  <!-- Assign an owner faction so a Boron shipyard/wharf actually stocks the blueprint. -->
   <replace sel="//ware[@id='ship_bor_m_corvette_02_a']/owner/@faction">boron</replace>
+
+  <!-- ============ Timelines wares: strip nocustomgamestart/limited/nodiplomacyblueprint, add noplayerbuild, assign owners ============ -->
+
+  <!-- ===== TERRAN GROUP (19): owner = terran + pioneers ===== -->
+
+  <!-- engines -->
+  <replace sel="//ware[@id='engine_ter_l_allround_02_mk1']/@tags">engine equipment noplayerbuild</replace>
+  <remove  sel="//ware[@id='engine_ter_l_allround_02_mk1']/owner"/>
+  <add     sel="//ware[@id='engine_ter_l_allround_02_mk1']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='engine_ter_m_virtual_01_mk1']/@tags">engine equipment noplayerbuild</replace>
+  <remove  sel="//ware[@id='engine_ter_m_virtual_01_mk1']/owner"/>
+  <add     sel="//ware[@id='engine_ter_m_virtual_01_mk1']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='engine_ter_s_virtual_01_mk1']/@tags">engine equipment noplayerbuild</replace>
+  <remove  sel="//ware[@id='engine_ter_s_virtual_01_mk1']/owner"/>
+  <add     sel="//ware[@id='engine_ter_s_virtual_01_mk1']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <!-- shields -->
+  <replace sel="//ware[@id='shield_ter_l_standard_02_mk1']/@tags">equipment shield noplayerbuild</replace>
+  <remove  sel="//ware[@id='shield_ter_l_standard_02_mk1']/owner"/>
+  <add     sel="//ware[@id='shield_ter_l_standard_02_mk1']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='shield_ter_l_standard_02_mk2']/@tags">equipment shield noplayerbuild</replace>
+  <remove  sel="//ware[@id='shield_ter_l_standard_02_mk2']/owner"/>
+  <add     sel="//ware[@id='shield_ter_l_standard_02_mk2']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='shield_ter_l_standard_02_mk3']/@tags">equipment shield noplayerbuild</replace>
+  <remove  sel="//ware[@id='shield_ter_l_standard_02_mk3']/owner"/>
+  <add     sel="//ware[@id='shield_ter_l_standard_02_mk3']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='shield_ter_m_standard_04_mk1']/@tags">equipment shield noplayerbuild</replace>
+  <remove  sel="//ware[@id='shield_ter_m_standard_04_mk1']/owner"/>
+  <add     sel="//ware[@id='shield_ter_m_standard_04_mk1']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='shield_ter_m_standard_04_mk2']/@tags">equipment shield noplayerbuild</replace>
+  <remove  sel="//ware[@id='shield_ter_m_standard_04_mk2']/owner"/>
+  <add     sel="//ware[@id='shield_ter_m_standard_04_mk2']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='shield_ter_m_standard_04_mk3']/@tags">equipment shield noplayerbuild</replace>
+  <remove  sel="//ware[@id='shield_ter_m_standard_04_mk3']/owner"/>
+  <add     sel="//ware[@id='shield_ter_m_standard_04_mk3']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='shield_ter_m_virtual_01_mk1']/@tags">equipment shield noplayerbuild</replace>
+  <remove  sel="//ware[@id='shield_ter_m_virtual_01_mk1']/owner"/>
+  <add     sel="//ware[@id='shield_ter_m_virtual_01_mk1']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='shield_ter_m_virtual_01_mk2']/@tags">equipment shield noplayerbuild</replace>
+  <remove  sel="//ware[@id='shield_ter_m_virtual_01_mk2']/owner"/>
+  <add     sel="//ware[@id='shield_ter_m_virtual_01_mk2']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='shield_ter_m_virtual_01_mk3']/@tags">equipment shield noplayerbuild</replace>
+  <remove  sel="//ware[@id='shield_ter_m_virtual_01_mk3']/owner"/>
+  <add     sel="//ware[@id='shield_ter_m_virtual_01_mk3']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='shield_ter_s_virtual_01_mk1']/@tags">equipment shield noplayerbuild</replace>
+  <remove  sel="//ware[@id='shield_ter_s_virtual_01_mk1']/owner"/>
+  <add     sel="//ware[@id='shield_ter_s_virtual_01_mk1']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='shield_ter_s_xperimental_01_mk5']/@tags">equipment shield noplayerbuild</replace>
+  <remove  sel="//ware[@id='shield_ter_s_xperimental_01_mk5']/owner"/>
+  <add     sel="//ware[@id='shield_ter_s_xperimental_01_mk5']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <!-- terran ships + weapon -->
+  <replace sel="//ware[@id='ship_ter_l_flagship_01_a']/@tags">ship noplayerbuild</replace>
+  <remove  sel="//ware[@id='ship_ter_l_flagship_01_a']/owner"/>
+  <add     sel="//ware[@id='ship_ter_l_flagship_01_a']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='ship_ter_m_corvette_02_a']/@tags">ship noplayerbuild</replace>
+  <remove  sel="//ware[@id='ship_ter_m_corvette_02_a']/owner"/>
+  <add     sel="//ware[@id='ship_ter_m_corvette_02_a']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='ship_ter_s_fighter_04_a']/@tags">ship noplayerbuild</replace>
+  <remove  sel="//ware[@id='ship_ter_s_fighter_04_a']/owner"/>
+  <add     sel="//ware[@id='ship_ter_s_fighter_04_a']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='ship_ter_s_xperimental_01_a']/@tags">ship noplayerbuild</replace>
+  <remove  sel="//ware[@id='ship_ter_s_xperimental_01_a']/owner"/>
+  <add     sel="//ware[@id='ship_ter_s_xperimental_01_a']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <replace sel="//ware[@id='weapon_ter_l_flagship_01_mk1']/@tags">equipment missilelauncher weapon noplayerbuild</replace>
+  <remove  sel="//ware[@id='weapon_ter_l_flagship_01_mk1']/owner"/>
+  <add     sel="//ware[@id='weapon_ter_l_flagship_01_mk1']">
+    <owner faction="terran" />
+    <owner faction="pioneers" />
+  </add>
+
+  <!-- ===== RACERS ===== -->
+
+  <!-- argon racer: antigone + argon -->
+  <replace sel="//ware[@id='ship_arg_s_racer_01_a']/@tags">ship noplayerbuild</replace>
+  <remove  sel="//ware[@id='ship_arg_s_racer_01_a']/owner"/>
+  <add     sel="//ware[@id='ship_arg_s_racer_01_a']">
+    <owner faction="antigone" />
+    <owner faction="argon" />
+  </add>
+
+  <!-- generic racer: all commonwealth -->
+  <replace sel="//ware[@id='ship_gen_s_racer_01_a']/@tags">ship noplayerbuild</replace>
+  <remove  sel="//ware[@id='ship_gen_s_racer_01_a']/owner"/>
+  <add     sel="//ware[@id='ship_gen_s_racer_01_a']">
+    <owner faction="antigone" />
+    <owner faction="argon" />
+    <owner faction="holyorder" />
+    <owner faction="paranid" />
+    <owner faction="teladi" />
+    <owner faction="trinity" />
+    <owner faction="boron" />
+    <owner faction="loanshark" />
+    <owner faction="scavenger" />
+    <owner faction="court" />
+    <owner faction="freesplit" />
+    <owner faction="split" />
+    <owner faction="alliance" />
+  </add>
+
+  <!-- paranid racer: holyorder + paranid + trinity -->
+  <replace sel="//ware[@id='ship_par_s_racer_01_a']/@tags">ship noplayerbuild</replace>
+  <remove  sel="//ware[@id='ship_par_s_racer_01_a']/owner"/>
+  <add     sel="//ware[@id='ship_par_s_racer_01_a']">
+    <owner faction="holyorder" />
+    <owner faction="paranid" />
+    <owner faction="trinity" />
+  </add>
+
+  <!-- teladi racer: teladi + ministry -->
+  <replace sel="//ware[@id='ship_tel_s_racer_01_a']/@tags">ship noplayerbuild</replace>
+  <remove  sel="//ware[@id='ship_tel_s_racer_01_a']/owner"/>
+  <add     sel="//ware[@id='ship_tel_s_racer_01_a']">
+    <owner faction="teladi" />
+    <owner faction="ministry" />
+  </add>
+
+  <!-- ===== RACER EQUIPMENT (engines + shields): owners mirror their racer ships (tags unchanged) ===== -->
+
+  <!-- argon racer equipment: antigone + argon -->
+  <remove sel="//ware[@id='engine_arg_s_racer_01_mk1']/owner"/>
+  <add    sel="//ware[@id='engine_arg_s_racer_01_mk1']">
+    <owner faction="antigone" />
+    <owner faction="argon" />
+  </add>
+
+  <remove sel="//ware[@id='shield_arg_s_racer_01_mk1']/owner"/>
+  <add    sel="//ware[@id='shield_arg_s_racer_01_mk1']">
+    <owner faction="antigone" />
+    <owner faction="argon" />
+  </add>
+
+  <!-- generic racer equipment: all commonwealth -->
+  <remove sel="//ware[@id='engine_gen_s_racer_01_mk1']/owner"/>
+  <add    sel="//ware[@id='engine_gen_s_racer_01_mk1']">
+    <owner faction="antigone" />
+    <owner faction="argon" />
+    <owner faction="holyorder" />
+    <owner faction="paranid" />
+    <owner faction="teladi" />
+    <owner faction="trinity" />
+    <owner faction="boron" />
+    <owner faction="loanshark" />
+    <owner faction="scavenger" />
+    <owner faction="court" />
+    <owner faction="freesplit" />
+    <owner faction="split" />
+    <owner faction="alliance" />
+  </add>
+
+  <remove sel="//ware[@id='engine_gen_s_racer_01_mk2']/owner"/>
+  <add    sel="//ware[@id='engine_gen_s_racer_01_mk2']">
+    <owner faction="antigone" />
+    <owner faction="argon" />
+    <owner faction="holyorder" />
+    <owner faction="paranid" />
+    <owner faction="teladi" />
+    <owner faction="trinity" />
+    <owner faction="boron" />
+    <owner faction="loanshark" />
+    <owner faction="scavenger" />
+    <owner faction="court" />
+    <owner faction="freesplit" />
+    <owner faction="split" />
+    <owner faction="alliance" />
+  </add>
+
+  <remove sel="//ware[@id='shield_gen_s_racer_01_mk1']/owner"/>
+  <add    sel="//ware[@id='shield_gen_s_racer_01_mk1']">
+    <owner faction="antigone" />
+    <owner faction="argon" />
+    <owner faction="holyorder" />
+    <owner faction="paranid" />
+    <owner faction="teladi" />
+    <owner faction="trinity" />
+    <owner faction="boron" />
+    <owner faction="loanshark" />
+    <owner faction="scavenger" />
+    <owner faction="court" />
+    <owner faction="freesplit" />
+    <owner faction="split" />
+    <owner faction="alliance" />
+  </add>
+
+  <!-- paranid racer equipment: holyorder + paranid + trinity -->
+  <remove sel="//ware[@id='engine_par_s_racer_01_mk1']/owner"/>
+  <add    sel="//ware[@id='engine_par_s_racer_01_mk1']">
+    <owner faction="holyorder" />
+    <owner faction="paranid" />
+    <owner faction="trinity" />
+  </add>
+
+  <remove sel="//ware[@id='shield_par_s_racer_01_mk1']/owner"/>
+  <add    sel="//ware[@id='shield_par_s_racer_01_mk1']">
+    <owner faction="holyorder" />
+    <owner faction="paranid" />
+    <owner faction="trinity" />
+  </add>
+
+  <!-- teladi racer equipment: teladi + ministry -->
+  <remove sel="//ware[@id='engine_tel_s_racer_01_mk1']/owner"/>
+  <add    sel="//ware[@id='engine_tel_s_racer_01_mk1']">
+    <owner faction="teladi" />
+    <owner faction="ministry" />
+  </add>
+
+  <remove sel="//ware[@id='shield_tel_s_racer_01_mk1']/owner"/>
+  <add    sel="//ware[@id='shield_tel_s_racer_01_mk1']">
+    <owner faction="teladi" />
+    <owner faction="ministry" />
+  </add>
+
 </diff>
