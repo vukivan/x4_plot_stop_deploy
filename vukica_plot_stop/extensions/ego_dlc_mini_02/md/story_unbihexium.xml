@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <replace sel="//cue[@name='Start']/actions/do_if">
+    <signal_cue cue="md.Setup_DLC_Mini_02.Scarlet_Star_Unlock_Sector" comment="opens gate"/>
+  </replace>
+  <add sel="//set_value[@name='$Chapters']" pos="before">
+    <signal_cue cue="md.Setup_DLC_Mini_02.Activate_Envoy"/>
+  </add>
+  <add sel="//set_value[@name='$Chapters']" pos="before">
+    <cancel_cue cue="Start"/>
+  </add>
+</diff>

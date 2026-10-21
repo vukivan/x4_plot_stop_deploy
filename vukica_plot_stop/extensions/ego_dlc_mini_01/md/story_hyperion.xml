@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <remove sel="//cue[@name='Start']/conditions/check_value[2]"/>
+  <replace sel="//cue[@name='Start']/actions/do_if">
+    <signal_cue cue="md.Setup_DLC_Mini_01.Activate_Hyperion_Faction_Paranid"/>
+  </replace>
+  <add sel="//set_value[@name='$Chapters']" pos="before">
+    <cancel_cue cue="Start"/>
+  </add>
+</diff>
