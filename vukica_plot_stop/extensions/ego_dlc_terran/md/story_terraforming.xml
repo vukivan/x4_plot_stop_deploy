@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
 <diff>
-  <remove sel="//cue[@name='Setup_Values_GS_Information']/actions/do_if"/>
-  <remove sel="//cue[@name='Setup_Values_GS_Information']/actions/do_elseif"/>
+  <replace sel="//actions/set_value[@name='$story_terraforming']/@exact">true</replace>
+  <replace sel="//actions/set_value[@name='$ForceCompleted']/@exact">true</replace>
 </diff>
