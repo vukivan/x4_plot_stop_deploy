@@ -36,13 +36,13 @@
   <replace sel="//cue[@name='Ch1_SetupCrate']/actions/speak">
     <find_crate_slot name="$CrateSlots" object="$PrisonRoom3" tags="[tag.crate_s, tag.crate_ontable]" multiple="true"/>
   </replace>
-  <add sel="//cue[@name='Ch1_SetupCrate']/actions">
+  <add sel="//find_crate_slot" pos="after">
     <debug_text text="'Found #crateslots:' + $CrateSlots.count" chance="$DebugChance"/>
   </add>
-  <add sel="//cue[@name='Ch1_SetupCrate']/actions">
+  <add sel="//cue[@name='Ch1_SetupCrate']/actions/debug_text" pos="after">
     <create_crate name="$ToolboxCrate" macro="macro.crate_gen_s_01_macro" slot="$CrateSlots.random"/>
   </add>
-  <add sel="//cue[@name='Ch1_SetupCrate']/actions">
+  <add sel="//create_crate" pos="after">
     <add_cargo object="$ToolboxCrate" ware="ware.weapon_gen_spacesuit_laser_01_mk1" exact="1"/>
   </add>
   <remove sel="//cue[@name='Ch1_Intro']/cues/library"/>
@@ -58,27 +58,14 @@
       <position space="$PrisonRoom" x="-1.9m" y="1.34m" z="-4.88m"/>
     </add_effect>
   </replace>
-  <add sel="//cue[@name='Ch1_SetupPrisonEffects']/actions[1]">
+  <add sel="//actions[1]/add_effect" pos="after">
     <add_effect object="$PrisonRoom" effect="'sparks_90deg_bursts_v1_tiny'">
       <position space="$PrisonRoom" x="3.01m" y="0.87m" z="-2.4m"/>
     </add_effect>
   </add>
   <remove sel="//cue[@name='Ch1_SetupPrisonEffects']/delay[@exact='8s']"/>
   <remove sel="//cue[@name='Ch1_SetupPrisonEffects']/actions[2]"/>
-  <replace sel="//cue[@name='Ch2_Corridor_Guidance1']">
-    <cue name="Ch1_SetupEscape">
-      <actions>
-        <find_object_component name="$PrisonMarker_25" groupname="$PrisonMarkerGroup" object="$PrisonModule" macro="macro.positiondummy25_macro" required="true" comment="In the upward curve of the escape-pipe (for navigating Axiom)"/>
-        <delay exact="2s"/>
-        <create_mission cue="$MissionCue" name="'Escape'" description="'Find a way out of prison!'" type="missiontype.plot" faction="faction.civilian" difficulty="level.hard" abortable="false" activate="true">
-          <briefing>
-            <objective step="1" action="objective.custom" customaction="'Find a way out of prison!'"/>
-          </briefing>
-        </create_mission>
-        <set_objective cue="$MissionCue" step="1" action="objective.custom" customaction="'Find a way out of prison!'" updatebriefing="true" comment="escape"/>
-      </actions>
-    </cue>
-  </replace>
+  <remove sel="//cue[@name='Ch2_Corridor_Guidance1']"/>
   <remove sel="//cue[@name='Ch2_Corridor_Guidance2']"/>
   <remove sel="//cue[@name='Ch2_Corridor_Guidance3']"/>
   <remove sel="//cue[@name='Ch2_PowerSwitch_Objective']"/>
@@ -94,7 +81,23 @@
   <remove sel="//cue[@name='Ch2_PickupCrate_Dialog_Finished']"/>
   <remove sel="//cue[@name='Ch2_LowerAirlock_NearbyNotArmed']"/>
   <remove sel="//cue[@name='Ch2_LowerAirlock_NearbyAndArmed']"/>
-  <remove sel="//cue[@name='Ch2_AirlockSwitch_Broken']"/>
+  <replace sel="//cue[@name='Ch2_AirlockSwitch_Broken']/@name">Ch1_SetupEscape</replace>
+  <remove sel="//cue[@name='Ch1_SetupEscape']/conditions"/>
+  <remove sel="//cue[@name='Ch1_SetupEscape']/actions[1]"/>
+  <replace sel="//cue[@name='Ch1_SetupEscape']/actions/set_value">
+    <find_object_component name="$PrisonMarker_25" groupname="$PrisonMarkerGroup" object="$PrisonModule" macro="macro.positiondummy25_macro" required="true" comment="In the upward curve of the escape-pipe (for navigating Axiom)"/>
+  </replace>
+  <replace sel="//cue[@name='Ch1_SetupEscape']/actions/set_objective">
+    <create_mission cue="$MissionCue" name="'Escape'" description="'Find a way out of prison!'" type="missiontype.plot" faction="faction.civilian" difficulty="level.hard" abortable="false" activate="true">
+      <briefing>
+        <objective step="1" action="objective.custom" customaction="'Find a way out of prison!'"/>
+      </briefing>
+    </create_mission>
+  </replace>
+  <replace sel="//cue[@name='Ch1_SetupEscape']/actions/remove_help">
+    <set_objective cue="$MissionCue" step="1" action="objective.custom" customaction="'Find a way out of prison!'" updatebriefing="true" comment="escape"/>
+  </replace>
+  <remove sel="//cue[@name='Ch1_SetupEscape']/actions/cancel_cue"/>
   <remove sel="//cue[@name='Ch2_LowerAirlockPipe_Inside']"/>
   <remove sel="//cue[@name='Ch2_Call_EscapeShip_CreatePosition_DEBUG']"/>
   <remove sel="//cue[@name='Ch2_Call_EscapeShip2']"/>
@@ -139,7 +142,7 @@
   <replace sel="//conditions/event_conversation_started">
     <event_object_changed_room object="player.entity"/>
   </replace>
-  <add sel="//cue[@name='Ch2_StationDocked']/conditions">
+  <add sel="//cue[@name='Ch2_StationDocked']/conditions/event_object_changed_room" pos="after">
     <check_value value="not player.ship.isclass.spacesuit"/>
   </add>
   <add sel="//cue[@name='Ch2_StationDocked']/actions" pos="before">
@@ -148,14 +151,14 @@
   <replace sel="//cue[@name='Ch2_StationDocked']/actions/speak">
     <remove_mission cue="$MissionCue" type="completed"/>
   </replace>
-  <add sel="//cue[@name='Ch2_StationDocked']/actions">
+  <add sel="//cue[@name='Ch2_StationDocked']/actions/remove_mission" pos="after">
     <create_mission cue="$MissionCue" name="'Steal a ship'" description="'Steal a ship docked at the station.'" type="missiontype.plot" faction="faction.civilian" difficulty="level.hard" abortable="false" activate="true">
       <briefing>
         <objective step="1" action="objective.goto" object="$StealShip"/>
       </briefing>
     </create_mission>
   </add>
-  <add sel="//cue[@name='Ch2_StationDocked']/actions">
+  <add sel="//cue[@name='Ch2_StationDocked']/actions/create_mission" pos="after">
     <set_objective cue="$MissionCue" step="1" action="objective.custom" object="$StealShip" customaction="'Steal a ship!'" updatebriefing="true" comment="steal ship"/>
   </add>
   <remove sel="//cue[@name='Ch2_ShipToSteal_Guidance_DEBUG']"/>
@@ -165,10 +168,10 @@
   <add sel="//cue[@name='Ch2_ShipToSteal_Enter']/actions/cancel_cue" pos="before">
     <remove_value name="md.$GlobalHintsDND"/>
   </add>
-  <add sel="//cue[@name='Ch2_ShipToSteal_Undock']">
+  <add sel="//cue[@name='Ch2_ShipToSteal_Undock']/actions" pos="after">
     <delay exact="3s"/>
   </add>
-  <add sel="//cue[@name='Ch2_ShipToSteal_Undock']">
+  <add sel="//cue[@name='Ch2_ShipToSteal_Undock']/delay[@exact='3s']" pos="after">
     <actions>
       <set_faction_relation faction="faction.ministry" otherfaction="faction.player" value="-0.1"/>
       <remove_value name="md.$GlobalHintsDND"/>

@@ -50,7 +50,7 @@
   <add sel="//gamestart[@id='x4ep1_gamestart_boron1']/universe/factions/relations">
     <relation faction="player" otherfaction="boron" relation="0.010001"/>
   </add>
-  <add sel="//gamestart[@id='x4ep1_gamestart_boron1']/universe/factions/relations">
+  <add sel="//gamestart[@id='x4ep1_gamestart_boron1']/universe/factions/relations/relation" pos="after">
     <relation faction="player" otherfaction="alliance" relation="0.003201"/>
   </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_boron1']/custom"/>
@@ -66,7 +66,7 @@
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron2']/location/player/position/@z">-2.541</replace>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron2']/location/player/rotation/@yaw">179.69951</replace>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron2']/location/player/rotation/@pitch">-1.83378</replace>
-  <add sel="//gamestart[@id='x4ep1_gamestart_boron2']/location">
+  <add sel="//gamestart[@id='x4ep1_gamestart_boron2']/location/player" pos="after">
     <interior module="landmarks_player_hq_01_research_macro" corridor="room_arg_corridor_01_macro" door="con_room_01" room="room_gen_boronoffice_01_macro" name="{20007,1171}"/>
   </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_boron2']/player/inventory/ware[@ware='inv_unstablecrystal']"/>

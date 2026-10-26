@@ -10,6 +10,7 @@
   <remove sel="//cue[@name='Setup_AdmiralFleet_PlaceActor']"/>
   <remove sel="//cue[@name='Story_Activation_Manager']/conditions/check_value[1]"/>
   <remove sel="//cue[@name='Story_Activation_Manager']/conditions/check_value"/>
+  <remove sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions[1]/signal_cue_instantly"/>
   <remove sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions[1]/warp"/>
   <remove sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions[1]/do_for_each"/>
   <replace sel="//do_elseif/find_station">
@@ -18,13 +19,12 @@
   <remove sel="//do_elseif/find_dockingbay"/>
   <remove sel="//actions[2]/do_elseif/create_ship"/>
   <remove sel="//do_elseif/add_blueprints"/>
-  <add sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions[2]/do_elseif/signal_cue" pos="before">
-    <signal_cue check="false" cue="md.Setup_DLC_Boron.BoronFaction_Jobs_HatikvahPatrols"/>
-  </add>
-  <add sel="//do_elseif/signal_cue[@cue='Cleanup_Ch7_Delayed']" pos="before">
+  <replace sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions[2]/do_elseif/signal_cue/@cue">md.Setup_DLC_Boron.BoronFaction_Jobs_HatikvahPatrols</replace>
+  <add sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions[2]/do_elseif/signal_cue" type="@check">false</add>
+  <add sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions[2]/do_elseif/signal_cue" pos="after">
     <signal_cue check="false" cue="md.Setup_DLC_Boron.BoronFaction_Jobs_RiptideSmuggler"/>
   </add>
-  <add sel="//do_elseif/signal_cue[@cue='Cleanup_Ch7_Delayed']" pos="before">
+  <add sel="//signal_cue[@check='false'][@cue='md.Setup_DLC_Boron.BoronFaction_Jobs_RiptideSmuggler']" pos="after">
     <signal_cue check="false" cue="md.Setup_DLC_Boron.BoronFaction_ActivateHighway_SoD"/>
   </add>
   <remove sel="//cue[@name='Ch6_1_BoFu_Complete']/actions/signal_cue"/>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <diff>
-  <add sel="//cue[@name='Timelines_Unlock_Message']/conditions">
+  <add sel="//cue[@name='Timelines_Unlock_Message']/conditions/check_value" pos="after">
     <check_value value="false"/>
   </add>
 </diff>
