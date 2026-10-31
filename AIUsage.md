@@ -18,3 +18,4 @@ AI was used for:
 Exceptions:
 - icons.xml diff file was AI constructed. script I use can't do it, and I was too lazy.
 - Nila Ti character portrait. AI repainted the head of "Fomo Fi" vanilla file. Suit and background was manually edited.
+- wares.xml diffs for timelines ships.
