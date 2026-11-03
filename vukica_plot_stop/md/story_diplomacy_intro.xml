@@ -1,5 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
 <diff>
-  <replace sel="//cue[@name='Initialise']/actions/do_if/@value">$ForceCompleted or (player.module!='custom_budgeted' and player.module!='custom_creative')</replace>
+  <add sel="//set_value[@name='$Page']" pos="before">
+    <set_value name="$HqCompleted" exact="gamestart.storystate.story_hq_boso"/>
+  </add>
+  <replace sel="//cue[@name='Initialise']/actions/do_if/@value">$ForceCompleted or player.module == 'x4ep1_gamestart_boron2' or player.module == 'x4ep1_gamestart_scientist'</replace>
+  <add sel="//cue[@name='Initialise']/actions/do_else" pos="before">
+    <do_elseif value="player.module == 'custom_creative' and $HqCompleted">
+      <signal_cue cue="Pt1_Hatikvah_Offer"/>
+    </do_elseif>
+  </add>
+  <replace sel="//cue[@name='Initialise']/actions/do_else/signal_cue/@cue">Pt10_Interloper</replace>
   <replace sel="//cue[@name='Pt11_Dal_MovedIn']/@checktime">player.age</replace>
 </diff>

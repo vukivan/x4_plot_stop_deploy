@@ -56,6 +56,7 @@
   <remove sel="//gamestart[@id='x4ep1_gamestart_boron1']/custom"/>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron2']/info/item[@name='{1021,1}']/@value">{20003,310001}</replace>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron2']/info/item[@name='{1021,2}']/@value">{20101,51001} {20111,1601} \({20221,3021}\)</replace>
+  <replace sel="//gamestart[@id='x4ep1_gamestart_boron2']/info/item[@name='{1021,5}']/@value">{1021,808}</replace>
   <remove sel="//gamestart[@id='x4ep1_gamestart_boron2']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_boron2']/intro"/>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron2']/location/@sector">cluster_31_sector001_macro</replace>

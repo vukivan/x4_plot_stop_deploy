@@ -3,7 +3,8 @@
   <add sel="//set_value[@name='$HQPosition']" pos="before">
     <find_sector name="$HQSectorHE" macro="macro.cluster_31_sector001_macro" comment="Heretic's End, the new HQ sector"/>
   </add>
-  <replace sel="//cue[@name='Initialise']/actions/do_if/@value">(player.module != 'custom_budgeted' and player.module != 'custom_creative') or $story_hq_boso or $story_hq_dal</replace>
-  <replace sel="//cue[@name='Initialise']/actions/do_if/do_if[1]/@value">player.module != 'custom_budgeted' and player.module != 'custom_creative'</replace>
+  <replace sel="//cue[@name='Initialise']/actions/do_if/@value">player.module == 'x4ep1_gamestart_boron2' or player.module == 'x4ep1_gamestart_scientist' or $story_hq_boso or $story_hq_dal</replace>
+  <replace sel="//cue[@name='Initialise']/actions/do_if/do_if[1]/@value">player.module == 'x4ep1_gamestart_boron2' or player.module == 'x4ep1_gamestart_scientist'</replace>
   <replace sel="//do_if[1]/find_station_by_true_owner/@space">player.galaxy</replace>
+  <remove sel="//cue[@name='Initialise']/actions/do_elseif"/>
 </diff>

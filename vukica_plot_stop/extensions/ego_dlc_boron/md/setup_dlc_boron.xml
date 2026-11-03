@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <diff>
+  <replace sel="//library/actions/set_value/@exact">false</replace>
   <replace sel="//actions/set_value[@name='$story_queendom_returned']/@exact">true</replace>
   <replace sel="//actions/set_value[@name='$story_boron_wayfinder']/@exact">false</replace>
   <add sel="//cue[@name='WaresAllocationPatch_KE']" pos="before">
