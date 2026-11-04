@@ -5,7 +5,7 @@
   </add>
   <replace sel="//cue[@name='Initialise']/actions/do_if/@value">$ForceCompleted or player.module == 'x4ep1_gamestart_boron2' or player.module == 'x4ep1_gamestart_scientist'</replace>
   <add sel="//cue[@name='Initialise']/actions/do_else" pos="before">
-    <do_elseif value="player.module == 'custom_creative' and $HqCompleted">
+    <do_elseif value="player.module == 'custom_creative' and ($HqCompleted or ($HqCompleted == 0 and $ForceCompleted == 0))">
       <signal_cue cue="Pt1_Hatikvah_Offer"/>
     </do_elseif>
   </add>
