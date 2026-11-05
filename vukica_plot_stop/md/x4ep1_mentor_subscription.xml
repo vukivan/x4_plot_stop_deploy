@@ -19,7 +19,8 @@
       <cues>
         <cue name="Phase_BosoOffer_Trigger_Check" checkinterval="1min">
           <conditions>
-            <check_value value="true"/>
+            <check_value value="player.money ge 1000000Cr"/>
+            <count_stations min="1" space="player.galaxy" owner="faction.player"/>
           </conditions>
           <actions>
             <signal_cue cue="Phase_BosoOffer"/>
@@ -141,6 +142,7 @@
                 </conditions>
                 <actions>
                   <speak actor="$Boron_Mentor" line="30228026" comment="Goodness me!"/>
+                  <play_music music="'music_hq_reveal'" comment="48s"/>
                   <set_objective cue="$MissionCue" step="3" action="objective.observe" object="$BeaconSector" offset="$HQSpawnPos" text="{20109,4901}" comment="Observe the arrival"/>
                   <create_ship macro="macro.ship_gen_xs_escapepod_01_a_macro" name="$TempEffectObject" sector="$BeaconSector">
                     <owner exact="faction.ownerless"/>
@@ -163,12 +165,17 @@
                         <position value="$EffectPos"/>
                       </add_effect>
                       <set_value name="$EffectLength" exact="11s"/>
-                      <do_if value="@$TempEffectObject.exists">
-                        <destroy_object object="$TempEffectObject"/>
-                      </do_if>
                       <speak actor="$Boron_Mentor" line="30228027" comment="The power system is stabilising."/>
                     </actions>
                     <cues>
+                      <cue name="Phase_BosoOffer_Warp_Cutscene">
+                        <delay exact="2s"/>
+                        <actions>
+                          <play_cutscene result="Phase_BosoOffer_Warp_Effect.$CutsceneID" key="'Story_Mentor_WarpIn'" targetmonitor="true" abortable="false">
+                            <param name="target_object" object="$TempEffectObject"/>
+                          </play_cutscene>
+                        </actions>
+                      </cue>
                       <cue name="Phase_BosoOffer_Warp_Spawn">
                         <conditions>
                           <event_cue_completed cue="Phase_BosoOffer_Warp_Effect"/>
@@ -190,10 +197,23 @@
                           <signal_cue_instantly cue="md.NPC_Instantiation.RequestRemoveObject" param="$HQ"/>
                           <do_if value="$HQ">
                             <speak actor="$Boron_Mentor" line="30222061" comment="It seems to have been successful."/>
+                            <unlock_achievement name="PLOT_1"/>
                             <set_value name="$NextBosoChatTime" min="player.age + 3min" max="player.age + 5min"/>
                           </do_if>
                         </actions>
                         <cues>
+                          <cue name="Phase_BosoOffer_End_Cutscene">
+                            <conditions>
+                              <event_cue_completed cue="Phase_BosoOffer_Warp_Spawn"/>
+                            </conditions>
+                            <delay exact="4s"/>
+                            <actions>
+                              <stop_cutscene cutscene="Phase_BosoOffer_Warp_Effect.$CutsceneID"/>
+                              <do_if value="@$TempEffectObject.exists">
+                                <destroy_object object="$TempEffectObject"/>
+                              </do_if>
+                            </actions>
+                          </cue>
                           <cue name="Phase_BosoOffer_Add_Dock">
                             <conditions>
                               <event_cue_completed cue="Phase_BosoOffer_Warp_Spawn"/>

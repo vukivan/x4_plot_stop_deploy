@@ -3,6 +3,9 @@
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron1']/@name">{30253,156}</replace>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron1']/@description">{99753,1000}</replace>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron1']/@image">gamestart_boron2</replace>
+  <add sel="//gamestart[@id='x4ep1_gamestart_boron1']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <replace sel="//item[@name='@name']/@name">{1021,8}</replace>
   <add sel="//gamestart[@id='x4ep1_gamestart_boron1']/info/item[@name='{1021,8}']" type="@value">{30253,102}</add>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron1']/info/item[@name='@player']/@name">{1021,13}</replace>
@@ -20,14 +23,12 @@
   <remove sel="//item[@name='{1021,2}'][@value='{1021,1404}']"/>
   <remove sel="//item[@name='{1021,3}'][@value='{1021,1405}']"/>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron1']/cutscene">
-    <type name="{1021,94}" description="{1021,95}" recommendation="21"/>
-  </replace>
-  <replace sel="//gamestart[@id='x4ep1_gamestart_boron1']/intro">
     <location galaxy="xu_ep2_universe_macro" sector="cluster_603_sector001_macro">
       <position x="0.000000" y="0.000000" z="0.000000"/>
       <rotation yaw="0.000000" pitch="0.000000"/>
     </location>
   </replace>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_boron1']/intro"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_boron1']/type[@name='{1021,90}']"/>
   <remove sel="//location[@galaxy='xu_ep2_universe_macro'][@sector='cluster_30_sector001_macro']"/>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron1']/player/@macro">character_player_boron_gamestart1_nila_macro</replace>
@@ -54,11 +55,15 @@
     <relation faction="player" otherfaction="alliance" relation="0.003201"/>
   </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_boron1']/custom"/>
+  <add sel="//gamestart[@id='x4ep1_gamestart_boron2']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron2']/info/item[@name='{1021,1}']/@value">{20003,310001}</replace>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron2']/info/item[@name='{1021,2}']/@value">{20101,51001} {20111,1601} \({20221,3021}\)</replace>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron2']/info/item[@name='{1021,5}']/@value">{1021,808}</replace>
   <remove sel="//gamestart[@id='x4ep1_gamestart_boron2']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_boron2']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_boron2']/type[@name='{1021,92}']"/>
   <replace sel="//gamestart[@id='x4ep1_gamestart_boron2']/location/@sector">cluster_31_sector001_macro</replace>
   <remove sel="//gamestart[@id='x4ep1_gamestart_boron2']/location/@docked"/>
   <add sel="//gamestart[@id='x4ep1_gamestart_boron2']/location" type="@station">station_pla_headquarters_base_01_macro</add>
@@ -71,35 +76,93 @@
     <interior module="landmarks_player_hq_01_research_macro" corridor="room_arg_corridor_01_macro" door="con_room_01" room="room_gen_boronoffice_01_macro" name="{20007,1171}"/>
   </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_boron2']/player/inventory/ware[@ware='inv_unstablecrystal']"/>
+  <add sel="//gamestart[@id='x4ep1_gamestart_pirate1']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_pirate1']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_pirate1']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_pirate1']/type[@name='{1021,92}']"/>
+  <add sel="//gamestart[@id='x4ep1_gamestart_pirate2']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_pirate2']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_pirate2']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_pirate2']/type[@name='{1021,90}']"/>
+  <add sel="//gamestart[@id='x4ep1_gamestart_terran1']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_terran1']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_terran1']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_terran1']/type[@name='{1021,90}']"/>
+  <replace sel="//gamestart[@id='x4ep1_gamestart_terran2']/@name">{99753,3000}</replace>
+  <replace sel="//gamestart[@id='x4ep1_gamestart_terran2']/@description">{99753,3001}</replace>
+  <add sel="//gamestart[@id='x4ep1_gamestart_terran2']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_terran2']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_terran2']/intro"/>
+  <remove sel="//gamestart[@id='x4ep1_gamestart_terran2']/type[@name='{1021,92}']"/>
+  <add sel="//gamestart[@id='x4ep1_gamestart_split1']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_split1']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_split1']/intro"/>
+  <remove sel="//type[@name='{1021,94}'][@description='{1021,95}'][@recommendation='9']"/>
+  <add sel="//gamestart[@id='x4ep1_gamestart_split2']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_split2']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_split2']/intro"/>
+  <remove sel="//type[@name='{1021,94}'][@description='{1021,95}'][@recommendation='11']"/>
+  <add sel="//gamestart[@id='x4ep1_gamestart_dlc_mini_02']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_dlc_mini_02']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_dlc_mini_02']/intro"/>
+  <remove sel="//type[@name='{1021,94}'][@description='{1021,95}'][2]"/>
+  <add sel="//gamestart[@id='x4ep1_gamestart_hyperion']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_hyperion']/info/item[6]"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_hyperion']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_hyperion']/intro"/>
+  <remove sel="//type[@name='{1021,94}'][@description='{1021,95}'][2]"/>
+  <add sel="//gamestart[@id='x4ep1_gamestart_intro']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_intro']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_intro']/intro"/>
+  <remove sel="//type[@name='{1021,92}']"/>
+  <add sel="//gamestart[@id='x4ep1_gamestart_tutorial']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_tutorial']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_tutorial']/intro"/>
+  <remove sel="//type[@name='{1021,94}'][@description='{1021,95}'][2]"/>
+  <add sel="//gamestart[@id='x4ep1_gamestart_trade']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_trade']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_trade']/intro"/>
+  <remove sel="//type[@name='{1021,94}'][@description='{1021,95}'][2]"/>
+  <add sel="//gamestart[@id='x4ep1_gamestart_fight']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_fight']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_fight']/intro"/>
+  <remove sel="//type[@name='{1021,94}'][@description='{1021,95}'][2]"/>
+  <add sel="//gamestart[@id='x4ep1_gamestart_discover']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_discover']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_discover']/intro"/>
+  <remove sel="//type[@name='{1021,94}'][@description='{1021,95}'][2]"/>
+  <add sel="//gamestart[@id='x4ep1_gamestart_scientist']/info" pos="before">
+    <type name="{1021,94}" description="{1021,95}"/>
+  </add>
   <remove sel="//gamestart[@id='x4ep1_gamestart_scientist']/cutscene"/>
   <remove sel="//gamestart[@id='x4ep1_gamestart_scientist']/intro"/>
+  <remove sel="//type[@name='{1021,94}'][@description='{1021,95}'][2]"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/known/parameters/space/sector[@sector='cluster_601_sector001_macro']/dependencies"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/known/parameters/space/sector[@sector='cluster_602_sector001_macro']/dependencies"/>
   <remove sel="//gamestart[@id='custom_budgeted']/budget/known/parameters/space/sector[@sector='cluster_603_sector001_macro']/dependencies"/>
@@ -155,9 +218,11 @@
   <remove sel="//sector[@sector='cluster_706_sector001_macro']/dependencies"/>
   <remove sel="//sector[@sector='cluster_708_sector001_macro']/dependencies"/>
   <remove sel="//sector[@sector='cluster_740_sector001_macro']/dependencies"/>
+  <remove sel="//gamestart[@id='custom_creative']/budget/groups/group[@id='covert_ops_situation']"/>
   <remove sel="//group[@id='yaki_situation']"/>
   <remove sel="//group[@id='terraforming_situation']"/>
   <remove sel="//group[@id='arcadian_endeavours']"/>
+  <remove sel="//gamestart[@id='custom_creative']/budget/groups/group[@id='northriver_company']"/>
   <remove sel="//group[@id='kingdom_end_situation']"/>
   <remove sel="//group[@id='timelines_situation']"/>
   <remove sel="//group[@id='hyperion_situation']"/>
@@ -169,8 +234,13 @@
   <remove sel="//story[@name='{1021,13511}']"/>
   <remove sel="//story[@name='{1021,13401}']"/>
   <remove sel="//story[@name='{1021,13411}']"/>
+  <remove sel="//gamestart[@id='custom_creative']/budget/story[@name='{1021,12801}']"/>
+  <remove sel="//gamestart[@id='custom_creative']/budget/story[@name='{1021,12811}']"/>
+  <remove sel="//gamestart[@id='custom_creative']/budget/story[@name='{1021,12821}']"/>
   <remove sel="//story[@name='{1021,12901}']"/>
   <remove sel="//story[@name='{1021,13001}']"/>
+  <remove sel="//gamestart[@id='custom_creative']/budget/story[@name='{1021,13201}']"/>
+  <remove sel="//gamestart[@id='custom_creative']/budget/story[@name='{1021,13211}']"/>
   <remove sel="//story[@name='{1021,13101}']"/>
   <remove sel="//story[@name='{1021,13111}']"/>
 </diff>

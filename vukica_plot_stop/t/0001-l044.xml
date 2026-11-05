@@ -7,5 +7,8 @@
     <t id="2000">A Voice Across Dimensions</t>
     <t id="2001">Dear recipient.\n\nIf this message reaches you, then there is yet hope. My name is Boso Ta, and I find myself in a most singular predicament. In my efforts to escape my Split captors, I commandeered a remarkable installation and attempted to pull it through a tear in space. The attempt was only a partial success: the station and I are now lodged between dimensions, unable to fully emerge into your reality.\n\nI require a capable partner to anchor the final jump. The procedure is quite safe. Mostly. You need only mark a suitable destination and keep a respectful distance while I complete the manoeuvre.\n\nShould you possess a well-run enterprise and the means to assist, I would be most grateful for your help. In return, the installation, and its considerable scientific potential, shall be yours to oversee.\n\nWith great anticipation,\nBoso Ta</t>
     <t id="2010">Drop a Navigation Beacon at the desired arrival location</t>
+    <!-- x4ep1_gamestart_terran2 name + description (Aldrin Heritage) -->
+    <t id="3000">Aldrin Heritage</t>
+    <t id="3001">Your family is of Aldrin origin, bound to a world sealed off when the Gate to Aldrin shut down years ago. Whatever became of those left behind, their resolve carried through to you. Brennan's Triumph is home now, and here you make your start.</t>
   </page>
 </language>
