@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <add sel="//cue[@name='Hyperion_Activation']/cues" pos="before">
+    <conditions>
+      <event_universe_generated/>
+      <check_value value="player.galaxy.macro == macro.xu_ep2_universe_macro" comment="only in main-galaxy"/>
+    </conditions>
+  </add>
+  <remove sel="//cue[@name='Activate_Hyperion_Faction_HolyOrder']"/>
+  <remove sel="//cue[@name='Activate_Hyperion_Faction_Paranid_GS']"/>
+  <replace sel="//cue[@name='Activate_Hyperion_Faction_Paranid']/conditions/event_cue_signalled">
+    <check_value value="faction.trinity.isactive != true"/>
+  </replace>
+  <replace sel="//cue[@name='Activate_Hyperion_Faction_Trinity']/conditions/event_cue_signalled">
+    <check_value value="faction.trinity.isactive"/>
+  </replace>
+</diff>

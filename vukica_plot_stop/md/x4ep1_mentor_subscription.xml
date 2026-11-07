@@ -3,6 +3,41 @@
   <add sel="//set_value[@name='$HQPosition']" pos="before">
     <find_sector name="$HQSectorHE" macro="macro.cluster_31_sector001_macro" comment="Heretic's End, the new HQ sector"/>
   </add>
+  <remove sel="//cue[@name='Start']/patch[@sinceversion='2']"/>
+  <remove sel="//cue[@name='Start']/patch[@sinceversion='4']"/>
+  <remove sel="//cue[@name='Start']/patch[@sinceversion='5']"/>
+  <remove sel="//patch[@sinceversion='6']"/>
+  <remove sel="//patch[@sinceversion='7']"/>
+  <remove sel="//patch[@sinceversion='8']"/>
+  <remove sel="//patch[@sinceversion='9']"/>
+  <remove sel="//patch[@sinceversion='10']"/>
+  <remove sel="//patch[@sinceversion='11']"/>
+  <remove sel="//patch[@sinceversion='13']"/>
+  <remove sel="//patch[@sinceversion='14']"/>
+  <remove sel="//patch[@sinceversion='15']"/>
+  <remove sel="//patch[@sinceversion='16']"/>
+  <remove sel="//patch[@sinceversion='17']"/>
+  <remove sel="//patch[@sinceversion='18']"/>
+  <remove sel="//patch[@sinceversion='19']"/>
+  <remove sel="//patch[@sinceversion='20']"/>
+  <remove sel="//patch[@sinceversion='21']"/>
+  <remove sel="//patch[@sinceversion='22']"/>
+  <remove sel="//patch[@sinceversion='23']"/>
+  <remove sel="//patch[@sinceversion='24']"/>
+  <remove sel="//cue[@name='Start']/patch"/>
+  <remove sel="//cue[@name='PATCH_AddStoryMentors']"/>
+  <remove sel="//cue[@name='PATCH_Player_Office_V2']"/>
+  <remove sel="//cue[@name='PATCH_Mission_Research_Lab_Once']"/>
+  <remove sel="//cue[@name='PATCH_Mission_Research_Lab_Repeat']"/>
+  <remove sel="//cue[@name='Debug_Create_HQ']"/>
+  <remove sel="//cue[@name='Debug_Create_HQ_With_Effects']"/>
+  <remove sel="//cue[@name='Debug_Create_HQ_With_Boso']"/>
+  <remove sel="//cue[@name='Debug_Create_HQ_With_Boso_And_Dal']"/>
+  <remove sel="//cue[@name='Debug_Create_HQ_With_Mentors']"/>
+  <remove sel="//cue[@name='Debug_Unlock_Research']"/>
+  <remove sel="//cue[@name='Debug_Destroy_HQ']"/>
+  <remove sel="//cue[@name='Debug_Add_Boron_To_HQ']"/>
+  <remove sel="//cue[@name='Patch_UnlockResearch']"/>
   <replace sel="//cue[@name='Initialise']/actions/do_if/@value">player.module == 'x4ep1_gamestart_boron2' or player.module == 'x4ep1_gamestart_scientist' or $story_hq_boso or $story_hq_dal</replace>
   <replace sel="//cue[@name='Initialise']/actions/do_if/do_if[1]/@value">player.module == 'x4ep1_gamestart_boron2' or player.module == 'x4ep1_gamestart_scientist'</replace>
   <replace sel="//do_if[1]/find_station_by_true_owner/@space">player.galaxy</replace>
@@ -19,8 +54,7 @@
       <cues>
         <cue name="Phase_BosoOffer_Trigger_Check" checkinterval="20min">
           <conditions>
-            <check_value value="player.money ge 1000000Cr"/>
-            <count_stations min="1" space="player.galaxy" owner="faction.player"/>
+            <check_value value="true"/>
           </conditions>
           <actions>
             <signal_cue cue="Phase_BosoOffer"/>
@@ -29,6 +63,8 @@
       </cues>
     </cue>
   </add>
+  <remove sel="//cue[@name='Face_To_Face_Achievement']/patch"/>
+  <remove sel="//cue[@name='Patch_Manage_PlayerOffice_Room_V2']"/>
   <remove sel="//cue[@name='SignalLeak_Hint_Message']"/>
   <remove sel="//cue[@name='Phase_SignalLeak_Cancelled']"/>
   <replace sel="//cue[@name='Phase_SignalLeak']/@name">Phase_BosoOffer</replace>
@@ -366,5 +402,36 @@
   </add>
   <remove sel="//cue[@name='Phase_SignalLeak_Reset_Helper']"/>
   <remove sel="//cue[@name='Phase_SignalLeak_Find_Station']"/>
+  <remove sel="//cue[@name='Phase_TheAnomaly']"/>
+  <remove sel="//cue[@name='Phase_Preparations']"/>
+  <remove sel="//cue[@name='Phase_TheExperiment']"/>
+  <remove sel="//cue[@name='Phase_TheExperiment_Music_Handler']"/>
+  <remove sel="//cue[@name='SHORTCUT_Claiming_The_HQ']"/>
+  <remove sel="//cue[@name='Phase_Claiming_The_HQ']"/>
+  <remove sel="//cue[@name='SHORTCUT_Terranborn']"/>
+  <remove sel="//cue[@name='Phase_Terranborn']"/>
+  <remove sel="//cue[@name='SHORTCUT_Escape']"/>
+  <remove sel="//cue[@name='Phase_Escape']"/>
+  <remove sel="//cue[@name='Boron_Arrives']"/>
+  <remove sel="//cue[@name='Patch__HQ_Name']"/>
+  <remove sel="//cue[@name='Other_Story_HQ_Handover']"/>
+  <remove sel="//cue[@name='Phase_Boron_HQ_Guidance']"/>
+  <remove sel="//cue[@name='Phase_Boron_HQ_Encounter']"/>
+  <remove sel="//cue[@name='First_Meeting']/actions/cancel_cue"/>
+  <remove sel="//cue[@name='First_Meeting']/patch[@sinceversion='2']"/>
+  <remove sel="//cue[@name='First_Meeting']/patch"/>
+  <remove sel="//cue[@name='SHORTCUT_Research']"/>
+  <remove sel="//cue[@name='Phase_Research']/patch"/>
   <replace sel="//cue[@name='Datavaults']/cues/cue/conditions/check_value/@value">$CurrentPhase != Phase_BosoOffer</replace>
+  <remove sel="//cue[@name='Datavaults_Create_Mission']/patch"/>
+  <remove sel="//cue[@name='RM_DeliverResources']/patch"/>
+  <remove sel="//cue[@name='Patch_RM_DeliverResources_MANTIS_1326']"/>
+  <remove sel="//cue[@name='RM_EngineMod_CollectPrize']/patch"/>
+  <remove sel="//cue[@name='RM_SETA_Mission']/patch[@sinceversion='2'][@state='complete']"/>
+  <remove sel="//cue[@name='RM_SETA_Mission']/patch"/>
+  <remove sel="//cue[@name='RM_Warp_HQ_Intro_Conv_Next_Section']/cues/cue/patch[@sinceversion='2']"/>
+  <remove sel="//cue[@name='RM_Warp_HQ_Intro_Conv_Next_Section']/cues/cue/patch"/>
+  <remove sel="//cue[@name='RM_Warp_HQ_Beacon_Speak_End']/cues/cue/patch"/>
+  <remove sel="//cue[@name='RM_Warp_HQ_Beacon_Launched_Speak_End']/cues/cue/patch"/>
+  <remove sel="//patch"/>
 </diff>
