@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <add sel="//actions/append_list_elements[@name='md.$DLCVigorSyndicateFaction']" pos="after">
+    <set_job_active activate="true" job="'ministry_food_smuggler_s'"/>
+  </add>
+  <add sel="//set_job_active" pos="after">
+    <set_job_active activate="true" job="'ministry_tech_trader_s'"/>
+  </add>
+  <add sel="//cue[@name='DiscoverS3']/actions/unlock_achievement" pos="after">
+    <set_object_name object="$SectorS3.cluster" page="20003" line="5040008"/>
+  </add>
+  <add sel="//cue[@name='DiscoverS3']/actions/set_object_name" pos="after">
+    <set_object_description object="$SectorS3.cluster" page="20003" line="5040009"/>
+  </add>
+  <add sel="//set_object_description" pos="after">
+    <set_object_name object="$SectorS3" page="20004" line="5040018"/>
+  </add>
+  <add sel="//set_object_name[@object='$SectorS3']" pos="after">
+    <set_object_description object="$SectorS3" page="20004" line="5040019"/>
+  </add>
+  <remove sel="//cue[@name='AnomalySetup']"/>
+  <remove sel="//cue[@name='AstridLimitedTagPatch']"/>
+</diff>

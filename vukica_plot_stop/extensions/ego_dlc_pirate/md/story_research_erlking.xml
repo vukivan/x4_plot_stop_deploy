@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <replace sel="//cue[@name='Player_ApproachSignal_StoryCheck']/actions/do_if">
+    <signal_cue cue="$ApproachSignalCue"/>
+  </replace>
+  <remove sel="//cue[@name='Player_ApproachSignal_StoryCheck']/actions/do_else"/>
+</diff>
