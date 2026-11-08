@@ -1,6 +1,17 @@
 <?xml version='1.0' encoding='utf-8'?>
 <diff>
-  <add sel="//cue[@name='Timelines_Unlock_Message']/conditions/check_value" pos="after">
-    <check_value value="false"/>
+  <add sel="//library" pos="before">
+    <cue name="XenonSlayer_Achievement">
+      <conditions>
+        <event_player_killed_object/>
+        <check_value value="event.param.trueowner == faction.xenon"/>
+        <check_value value="player.occupiedship.macro.ismacro.ship_ter_s_xperimental_01_a_macro"/>
+      </conditions>
+      <actions>
+        <unlock_achievement name="TL_XENON_SLAYER"/>
+      </actions>
+    </cue>
   </add>
+  <remove sel="//cue[@name='Timelines_Unlock_Message']"/>
+  <remove sel="//cue[@name='Setup_Racing_Trophy']"/>
 </diff>

@@ -54,7 +54,8 @@
       <cues>
         <cue name="Phase_BosoOffer_Trigger_Check" checkinterval="20min">
           <conditions>
-            <check_value value="true"/>
+            <check_value value="player.money ge 1000000Cr"/>
+            <count_stations min="1" space="player.galaxy" owner="faction.player"/>
           </conditions>
           <actions>
             <signal_cue cue="Phase_BosoOffer"/>
