@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <diff>
+  <replace sel="//ware[@id='module_pir_stor_condensate_s_01']/@tags">module</replace>
+  <replace sel="//ware[@id='ship_gen_m_yacht_01_a']/@tags">noplayerbuild ship</replace>
+  <replace sel="//ware[@id='ship_gen_m_yacht_01_a']/owner/@faction">loanshark</replace>
   <replace sel="//ware[@id='ship_bor_m_corvette_02_a']/@tags">ship noplayerbuild</replace>
   <replace sel="//ware[@id='ship_bor_m_corvette_02_a']/owner/@faction">boron</replace>
   <replace sel="//ware[@id='engine_arg_s_racer_01_mk1']/owner/@faction">antigone</replace>
