@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <replace sel="//actions/set_value[@name='md.Diplomacy.Start.$DiplomacyFactionTable.{faction.yaki}']/@exact">table[$DiplomatAvailable = ['yes', tag.group_02],                                                                                                     $EventCapable = 'no',                                                                                                     $InateAgentExperience = 'espionage']</replace>
+  <remove sel="//actions/set_faction_diplomacy_exclusion[@otherfaction='faction.antigone'][@faction='faction.argon']"/>
+  <remove sel="//actions/set_faction_diplomacy_exclusion[@otherfaction='faction.antigone']"/>
+  <remove sel="//actions/set_faction_diplomacy_exclusion[@otherfaction='faction.argon']"/>
+  <remove sel="//actions/do_if[@value='md.$DLCBoronFactions.count']"/>
+  <replace sel="//cue[@name='Setup_PersistentCharacters_Pioneers_ChiefScientistActor']/@name">Setup_Yaki_HQ_Protection</replace>
+  <remove sel="//cue[@name='Setup_Yaki_HQ_Protection']/@instantiate"/>
+  <remove sel="//cue[@name='Setup_Yaki_HQ_Protection']/@version"/>
+  <add sel="//cue[@name='Setup_Yaki_HQ_Protection']" type="@onfail">cancel</add>
+  <replace sel="//cue[@name='Setup_Yaki_HQ_Protection']/conditions/event_cue_signalled">
+    <check_value value="player.galaxy.macro.ismacro.{macro.xu_ep2_universe_macro}"/>
+  </replace>
+  <add sel="//cue[@name='Setup_Yaki_HQ_Protection']/actions" pos="before">
+    <delay exact="1s" comment="Small delay so that all stations exist, same workaround as Setup_Terran_MarsGate"/>
+  </add>
+  <replace sel="//cue[@name='Setup_Yaki_HQ_Protection']/actions/do_if">
+    <find_sector name="$YakiHomeSector" macro="macro.cluster_112_sector001_macro" comment="Savage Spur I" required="true"/>
+  </replace>
+  <add sel="//cue[@name='Setup_Yaki_HQ_Protection']/actions/find_sector" pos="after">
+    <find_station_by_true_owner name="$YakiHQ" faction="faction.yaki" space="$YakiHomeSector"/>
+  </add>
+  <add sel="//find_station_by_true_owner" pos="after">
+    <do_if value="$YakiHQ">
+      <run_actions ref="md.LIB_Generic.RequestObjectInvincibility">
+        <param name="Object" value="$YakiHQ"/>
+        <param name="RequesterCue" value="namespace"/>
+        <param name="MinHull" value="100"/>
+      </run_actions>
+    </do_if>
+  </add>
+  <add sel="//cue[@name='Setup_Yaki_HQ_Protection']/actions/do_if" pos="after">
+    <do_else>
+      <cancel_cue cue="this"/>
+    </do_else>
+  </add>
+  <remove sel="//cue[@name='Setup_Yaki_HQ_Protection']/patch"/>
+  <replace sel="//cue[@name='Setup_Yaki_HQ_Protection']/cues/cue/@name">Yaki_HQ_Player_Attack</replace>
+  <remove sel="//cue[@name='Setup_Yaki_HQ_Protection']/cues/cue/@onfail"/>
+  <replace sel="//cue[@name='Setup_Yaki_HQ_Protection']/cues/cue/conditions/check_value">
+    <event_player_owned_attacked_object comment="param == attacker, param2 == attacked object"/>
+  </replace>
+  <add sel="//event_player_owned_attacked_object" pos="after">
+    <check_value value="(event.param2 == $YakiHQ) or (@event.param2.container == $YakiHQ)" comment="The attacked object can be the station or one of its modules"/>
+  </add>
+  <remove sel="//cue[@name='Setup_Yaki_HQ_Protection']/cues/cue/delay"/>
+  <replace sel="//cue[@name='Setup_Yaki_HQ_Protection']/cues/cue/actions/signal_cue_instantly">
+    <run_actions ref="md.LIB_Generic.RequestObjectVulnerability">
+      <param name="Object" value="$YakiHQ"/>
+      <param name="RequesterCue" value="namespace"/>
+    </run_actions>
+  </replace>
+  <replace sel="//cue[@name='Setup_PersistentCharacters_Terran_SecretServiceActor']/@name">Terraforming_Skip</replace>
+  <remove sel="//cue[@name='Terraforming_Skip']/@instantiate"/>
+  <remove sel="//cue[@name='Terraforming_Skip']/@version"/>
+  <add sel="//cue[@name='Terraforming_Skip']" type="@onfail">cancel</add>
+  <replace sel="//cue[@name='Terraforming_Skip']/conditions/event_cue_signalled">
+    <check_value value="player.galaxy.macro == macro.xu_ep2_universe_macro" comment="only in main-galaxy"/>
+  </replace>
+  <replace sel="//cue[@name='Terraforming_Skip']/actions/do_if">
+    <add_research ware="ware.research_tf_tech"/>
+  </replace>
+  <add sel="//add_research" pos="after">
+    <find_cluster name="$Cluster_Segaris" macro="macro.cluster_113_macro"/>
+  </add>
+  <add sel="//find_cluster" pos="after">
+    <find_cluster name="$Cluster_GaianProphecy" macro="macro.cluster_114_macro"/>
+  </add>
+  <add sel="//find_cluster[@name='$Cluster_GaianProphecy']" pos="after">
+    <initialise_terraforming cluster="$Cluster_Segaris" partname="'part_earthlike'"/>
+  </add>
+  <add sel="//initialise_terraforming" pos="after">
+    <initialise_terraforming cluster="$Cluster_GaianProphecy" partname="'planet'"/>
+  </add>
+  <add sel="//initialise_terraforming[@cluster='$Cluster_GaianProphecy']" pos="after">
+    <set_value name="$PopulationGrowth" exact="[                        1 * 1000,                        50 * 1000,                        200 * 1000,                        400 * 1000,                        1 * 1000 * 1000,                        10 * 1000 * 1000,                        25 * 1000 * 1000,                        50 * 1000 * 1000,                        75 * 1000 * 1000                        ]"/>
+  </add>
+  <add sel="//cue[@name='Terraforming_Skip']/actions/set_value" pos="after">
+    <set_world_population cluster="$Cluster_Segaris" partname="'part_earthlike'" page="1042" line="10021" amount="$PopulationGrowth.last"/>
+  </add>
+  <add sel="//set_world_population" pos="after">
+    <set_world_atmosphere cluster="$Cluster_Segaris" partname="'part_earthlike'" page="1042" line="11071" comment="Nitrogen/Oxygen"/>
+  </add>
+  <add sel="//set_world_atmosphere" pos="after">
+    <set_world_settlements cluster="$Cluster_Segaris" partname="'part_earthlike'" page="1042" line="16041" comment="Multiple Cities"/>
+  </add>
+  <add sel="//set_world_settlements" pos="after">
+    <set_world_population cluster="$Cluster_GaianProphecy" partname="'planet'" page="1042" line="10021" amount="$PopulationGrowth.last * 1.2"/>
+  </add>
+  <add sel="//set_world_population[@cluster='$Cluster_GaianProphecy']" pos="after">
+    <set_world_atmosphere cluster="$Cluster_GaianProphecy" partname="'planet'" page="1042" line="11071" comment="Nitrogen/Oxygen"/>
+  </add>
+  <add sel="//set_world_atmosphere[@cluster='$Cluster_GaianProphecy']" pos="after">
+    <set_world_settlements cluster="$Cluster_GaianProphecy" partname="'planet'" page="1042" line="16041" comment="Multiple Cities"/>
+  </add>
+  <remove sel="//cue[@name='Terraforming_Skip']/patch"/>
+  <remove sel="//cue[@name='Terraforming_Skip']/cues"/>
+  <replace sel="//find_gate">
+    <set_faction_relation_locked faction="faction.yaki" locked="false"/>
+  </replace>
+  <remove sel="//create_list[@name='$TerranDLCGates']"/>
+  <remove sel="//cue[@name='X4ep1_Prelude_Setup']/actions/create_list"/>
+  <remove sel="//cue[@name='X4ep1_Prelude_Setup']/actions/do_for_each"/>
+  <remove sel="//cue[@name='X4ep1_Prelude_Setup']/actions/remove_value"/>
+  <remove sel="//cue[@name='Terran_Prelude_Start_Handlers']"/>
+  <remove sel="//cue[@name='Terran_Prelude_Approach_Handler']"/>
+  <remove sel="//cue[@name='Terran_Prelude_Approached_Gate_Handler']"/>
+  <remove sel="//cue[@name='Terran_Prelude_Approached_Gate']"/>
+</diff>

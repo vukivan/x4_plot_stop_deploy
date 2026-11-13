@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <remove sel="//job[@id='zyarth_corvette_m_raid']/@startactive"/>
+  <remove sel="//job[@id='split_envoy']/@startactive"/>
+  <remove sel="//job[@id='split_envoy_mission']/@startactive"/>
+  <remove sel="//job[@id='freesplit_envoy']/@startactive"/>
+  <remove sel="//job[@id='terran_envoy']/@startactive"/>
+  <remove sel="//job[@id='terran_envoy_mission']/@startactive"/>
+  <remove sel="//job[@id='pioneers_envoy']/@startactive"/>
+  <remove sel="//job[@id='pioneers_envoy_mission']/@startactive"/>
+  <remove sel="//job[@id='boron_water_smuggler_m']/@startactive"/>
+  <remove sel="//job[@id='scavenger_envoy']/@startactive"/>
+  <remove sel="//job[@id='boron_universal_trader_l']/@startactive"/>
+  <remove sel="//job[@id='boron_universal_trader_l_hightech']/@startactive"/>
+  <remove sel="//job[@id='argon_import_trader_m']/@startactive"/>
+  <remove sel="//job[@id='paranid_import_trader_m']/@startactive"/>
+  <remove sel="//job[@id='teladi_import_trader_m']/@startactive"/>
+  <remove sel="//job[@id='boron_scout_patrol_s']/@startactive"/>
+  <remove sel="//job[@id='boron_envoy']/@startactive"/>
+  <remove sel="//job[@id='boron_envoy_mission']/@startactive"/>
+  <remove sel="//job[@id='argon_construction_m_boron']/@startactive"/>
+  <remove sel="//job[@id='hatikvah_fighter_patrol_s_boron_random']/@startactive"/>
+  <remove sel="//job[@id='hatikvah_fighter_patrol_s_boron_tradestation']/@startactive"/>
+  <remove sel="//job[@id='scaleplate_scavenger_m_cluster_bor_core']/@startactive"/>
+  <remove sel="//job[@id='scaleplate_scavenger_s_cluster_bor_core']/@startactive"/>
+  <remove sel="//job[@id='scaleplate_plunderer_l_cluster_bor_outer']/@startactive"/>
+  <remove sel="//job[@id='scaleplate_scavenger_m_cluster_bor_outer']/@startactive"/>
+  <remove sel="//job[@id='argon_destroyer_patrol_l_boron']/@startactive"/>
+  <add sel="//job[@id='boron_bogas_trader_m_fake']" type="@startactive">false</add>
+  <add sel="//job[@id='boron_bio_trader_m_fake']" type="@startactive">false</add>
+  <add sel="//job[@id='boron_medical_trader_s_fake']" type="@startactive">false</add>
+  <add sel="//job[@id='boron_energycell_trader_m_fake']" type="@startactive">false</add>
+  <remove sel="//job[@id='boron_ship_construction_trader_m_border_only']/@startactive"/>
+  <add sel="//job[@id='boron_refinedgas_trader_m_fake']" type="@startactive">false</add>
+  <remove sel="//job[@id='boron_water_trader_l_border']/@startactive"/>
+  <remove sel="//job[@id='boron_scavenger_free_tug_m']/@startactive"/>
+  <remove sel="//job[@id='boron_staticdefense_engineer_m']/@startactive"/>
+  <remove sel="//job[@id='boron_staticdefense_minelayer_s']/@startactive"/>
+  <remove sel="//job[@id='boron_carrier_patrol_xl_argon_initial']/@startactive"/>
+  <remove sel="//job[@id='boron_destroyer_patrol_l_border_only']/@startactive"/>
+  <remove sel="//job[@id='boron_medium_patrol_m_sector_border_mission']/@startactive"/>
+  <remove sel="//job[@id='argon_envoy']/@startactive"/>
+  <remove sel="//job[@id='argon_envoy_mission']/@startactive"/>
+  <remove sel="//job[@id='antigone_envoy']/@startactive"/>
+  <remove sel="//job[@id='teladi_envoy']/@startactive"/>
+  <remove sel="//job[@id='teladi_envoy_mission']/@startactive"/>
+  <remove sel="//job[@id='ministry_envoy']/@startactive"/>
+  <remove sel="//job[@id='scaleplate_cypher']/@startactive"/>
+</diff>

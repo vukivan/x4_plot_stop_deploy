@@ -1,17 +1,95 @@
 <?xml version='1.0' encoding='utf-8'?>
 <diff>
-  <add sel="//cue[@name='Hyperion_Activation']/cues" pos="before">
+  <replace sel="//cue[@name='Hyperion_Activation']/cues">
     <conditions>
       <event_universe_generated/>
       <check_value value="player.galaxy.macro == macro.xu_ep2_universe_macro" comment="only in main-galaxy"/>
     </conditions>
+  </replace>
+  <add sel="//cue[@name='Hyperion_Activation']/conditions" pos="after">
+    <actions>
+      <do_if value="faction.trinity.isactive != true">
+        <signal_cue_instantly cue="Activate_Hyperion_For_Faction" param="faction.paranid"/>
+      </do_if>
+      <do_else>
+        <signal_cue_instantly cue="Activate_Hyperion_For_Faction" param="faction.trinity"/>
+      </do_else>
+    </actions>
   </add>
-  <remove sel="//cue[@name='Activate_Hyperion_Faction_HolyOrder']"/>
-  <remove sel="//cue[@name='Activate_Hyperion_Faction_Paranid_GS']"/>
-  <replace sel="//cue[@name='Activate_Hyperion_Faction_Paranid']/conditions/event_cue_signalled">
-    <check_value value="faction.trinity.isactive != true"/>
-  </replace>
-  <replace sel="//cue[@name='Activate_Hyperion_Faction_Trinity']/conditions/event_cue_signalled">
-    <check_value value="faction.trinity.isactive"/>
-  </replace>
+  <add sel="//cue[@name='Hyperion_Activation']" pos="after">
+    <cue name="Activate_Hyperion_For_Faction" version="2">
+      <conditions>
+        <event_cue_signalled/>
+      </conditions>
+      <actions>
+        <set_value name="$HyperionFaction" exact="event.param"/>
+        <do_if value="faction.trinity.isactive">
+          <set_value name="$HyperionFaction" exact="faction.trinity"/>
+        </do_if>
+        <add_licence faction="faction.player" licencefaction="$HyperionFaction" type="hyperion_access"/>
+        <set_value name="md.Setup_DLC_Mini_01.Hyperion_Activation.$BlueprintStealingAllowed" exact="$HyperionFaction"/>
+        <do_if value="md.Diplomacy.Start.$Diplomacy_StoryBlueprint_Blacklist?">
+          <remove_from_list name="md.Diplomacy.Start.$Diplomacy_StoryBlueprint_Blacklist" list="[ware.ship_par_l_expeditionary_01_a,                             ware.weapon_par_l_expeditionary_01_mk1]"/>
+        </do_if>
+        <do_if value="$HyperionFaction == faction.holyorder">
+          <set_job_active activate="true" job="'holyorder_expeditionary_patrol_l_sector'"/>
+          <signal_cue cue="Activate_Hyperion_Faction_Trinity_Delayed"/>
+        </do_if>
+        <do_elseif value="$HyperionFaction == faction.paranid">
+          <set_job_active activate="true" job="'paranid_expeditionary_patrol_l_sector'"/>
+          <signal_cue cue="Activate_Hyperion_Faction_Trinity_Delayed"/>
+        </do_elseif>
+        <do_elseif value="$HyperionFaction == faction.trinity">
+          <set_job_active activate="true" job="'trinity_expeditionary_patrol_l_sector'"/>
+          <set_job_active activate="false" job="'paranid_expeditionary_patrol_l_sector'" successor="'trinity_expeditionary_patrol_l_sector'"/>
+        </do_elseif>
+      </actions>
+      <patches>
+        <patch sinceversion="2">
+          <set_value name="md.Setup_DLC_Mini_01.Hyperion_Activation.$BlueprintStealingAllowed" exact="$HyperionFaction"/>
+          <do_if value="md.Diplomacy.Start.$Diplomacy_StoryBlueprint_Blacklist?">
+            <remove_from_list name="md.Diplomacy.Start.$Diplomacy_StoryBlueprint_Blacklist" list="[ware.ship_par_l_expeditionary_01_a,                             ware.weapon_par_l_expeditionary_01_mk1]"/>
+          </do_if>
+        </patch>
+      </patches>
+    </cue>
+  </add>
+  <add sel="//cue[@name='Activate_Hyperion_For_Faction']" pos="after">
+    <cue name="Activate_Hyperion_Faction_Trinity_Delayed">
+      <conditions>
+        <event_cue_signalled/>
+      </conditions>
+      <cues>
+        <cue name="Activate_Hyperion_Trinity_Check" onfail="cancel">
+          <conditions>
+            <check_value value="faction.trinity.isactive"/>
+          </conditions>
+          <actions>
+            <signal_cue cue="Activate_Hyperion_Trinity_Event"/>
+          </actions>
+        </cue>
+        <cue name="Activate_Hyperion_Trinity_Event">
+          <conditions>
+            <check_any>
+              <event_cue_signalled/>
+              <event_faction_activated faction="faction.trinity"/>
+            </check_any>
+          </conditions>
+          <actions>
+            <add_licence faction="faction.player" licencefaction="faction.trinity" type="hyperion_access"/>
+            <set_job_active activate="true" job="'trinity_expeditionary_patrol_l_sector'"/>
+            <set_job_active activate="false" job="'paranid_expeditionary_patrol_l_sector'" successor="'trinity_expeditionary_patrol_l_sector'"/>
+          </actions>
+        </cue>
+        <cue name="Debug_Activate_Trinity_Faction">
+          <conditions>
+            <event_cue_signalled/>
+          </conditions>
+          <actions>
+            <set_faction_active faction="faction.trinity" active="true"/>
+          </actions>
+        </cue>
+      </cues>
+    </cue>
+  </add>
 </diff>

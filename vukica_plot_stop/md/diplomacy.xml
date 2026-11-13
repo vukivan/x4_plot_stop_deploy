@@ -1,2 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<diff/>
+<diff>
+  <remove sel="//event_cue_completed[@cue='md.X4Ep1_Mentor_Subscriptions.Other_Story_HQ_Handover']"/>
+  <remove sel="//event_cue_completed[@cue='md.X4Ep1_Mentor_Subscriptions.Phase_Boron_Boso_JumpedIntoHE_Introductions']"/>
+</diff>

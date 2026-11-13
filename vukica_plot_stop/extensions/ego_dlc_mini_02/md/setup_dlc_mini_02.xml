@@ -1,125 +1,280 @@
 <?xml version='1.0' encoding='utf-8'?>
 <diff>
-  <remove sel="//cue[@name='Scarlet_Star_Unlock_Sector']/conditions"/>
-  <replace sel="//signal_cue_instantly/@cue">Setup_DataVault</replace>
-  <add sel="//signal_cue_instantly" pos="after">
-    <signal_cue_instantly cue="md.PlacedObjects.Place_DataVaults_29"/>
+  <add sel="//actions/append_list_elements" pos="after">
+    <signal_cue_instantly cue="Envoy_Activation"/>
   </add>
-  <add sel="//signal_cue_instantly[@cue='md.PlacedObjects.Place_DataVaults_29']" pos="after">
-    <set_value name="$Vault" exact="md.PlacedObjects.Place_DataVaults.$UnbihexiumVaults.{1}"/>
-  </add>
-  <add sel="//cue[@name='Scarlet_Star_Unlock_Sector']/actions/set_value" pos="after">
-    <assert value="$Vault != null" text="'[Heinrich] Post-Supernova Sector Vault not found.'"/>
-  </add>
-  <remove sel="//cue[@name='Scarlet_Star_Unlock_FactionLogic']"/>
-  <add sel="//cue[@name='Envoy_Activation']/conditions/check_value" pos="before">
-    <event_universe_generated/>
-  </add>
-  <remove sel="//cue[@name='Envoy_Activation']/cues/cue/conditions"/>
-  <add sel="//cue[@name='Envoy_Activation']" pos="after">
-    <cue name="Unlock_Sobert_Agent">
+  <replace sel="//cue[@name='Scarlet_Star_Unlock_Sector']">
+    <cue name="Scarlet_Star_Unlock_Sector" checkinterval="1s">
       <conditions>
-        <event_universe_generated/>
-        <check_value value="player.galaxy.macro == macro.xu_ep2_universe_macro" comment="only in main-galaxy"/>
+        <check_value value="md.PlacedObjects.Place_DataVaults.state == cuestate.complete" comment="vault 29 cue only listens once PlacedObjects has placed the vaults"/>
       </conditions>
       <actions>
-        <set_value name="$CourierActor.$diplomacy_exp_negotiation" exact="150"/>
-        <set_value name="$CourierActor.$diplomacy_exp_espionage" exact="150"/>
-        <set_value name="$AgentActor" exact="$CourierActor"/>
-        <set_entity_type entity="$CourierActor" type="entitytype.agent"/>
+        <set_object_active object="$Cluster740Gate" activate="true"/>
+        <signal_cue_instantly cue="md.PlacedObjects.Place_DataVaults_29"/>
+        <set_value name="$Vault" exact="md.PlacedObjects.Place_DataVaults.$UnbihexiumVaults.{1}"/>
+        <assert value="$Vault != null" text="'[Heinrich] Post-Supernova Sector Vault not found.'"/>
       </actions>
+    </cue>
+  </replace>
+  <remove sel="//cue[@name='Scarlet_Star_Unlock_FactionLogic']"/>
+  <replace sel="//cue[@name='Envoy_Activation']">
+    <cue name="Envoy_Activation">
+      <conditions>
+        <event_cue_signalled/>
+      </conditions>
       <cues>
-        <cue name="Agents_Unlocked">
+        <cue name="Activate_Envoy">
           <cues>
-            <cue name="Agents_Unlocked_Check" onfail="cancel">
-              <conditions>
-                <check_value value="cuestate.waiting != md.Diplomacy.Diplomacy_EnableAllGenericActions.state"/>
-              </conditions>
+            <cue name="Clear_Diplomacy_Stealing_Blacklist">
               <actions>
-                <signal_cue cue="Agents_Unlocked_Event"/>
+                <set_value name="md.Setup_DLC_Mini_02.Activate_Envoy.$BlueprintStealingAllowed"/>
+                <remove_from_list name="md.Diplomacy.Start.$Diplomacy_StoryBlueprint_Blacklist" list="[ware.ship_gen_m_corvette_01,                                          ware.engine_arg_m_corvette_01_mk1,                                          ware.engine_arg_m_corvette_01_mk2,                                          ware.engine_tel_m_corvette_01_mk1,                                          ware.engine_tel_m_corvette_01_mk2,                                          ware.shield_gen_m_corvette_01_mk1,                                          ware.weapon_gen_m_disabler_01_mk1,                                          ware.weapon_gen_m_shieldpierce_01_mk1]"/>
               </actions>
             </cue>
-            <cue name="Agents_Unlocked_Event">
-              <conditions>
-                <check_any>
-                  <event_cue_signalled/>
-                  <event_cue_signalled cue="md.Diplomacy.Diplomacy_EnableAllGenericActions"/>
-                </check_any>
-              </conditions>
-              <delay exact="20min" comment="timer to not unlock immediately"/>
+            <cue name="Envoy_Licences">
               <actions>
-                <signal_cue cue="Recruitment_Sobert"/>
+                <add_licence faction="faction.player" licencefaction="faction.ministry" type="envoy_access"/>
+                <add_licence faction="faction.player" licencefaction="faction.argon" type="envoy_access"/>
               </actions>
             </cue>
-          </cues>
-        </cue>
-        <cue name="Recruitment_Sobert">
-          <conditions>
-            <event_cue_signalled/>
-          </conditions>
-          <cues>
-            <cue name="Placement_Sobert">
-              <actions>
-                <set_value name="$EmbassyRoom" exact="md.X4Ep1_Mentor_Subscriptions.Start.$EmbassyRoom"/>
-                <signal_cue_instantly cue="md.NPC_Instantiation.NPC_Placement_Manager" param="['add_definition', $CourierActor, table[                                       $requestercue = $MissionCue,                                       $priority = 100,                                       $location = $EmbassyRoom,                                       $position = position.[-7.944m, -0.0760589m, -5.559m],                                       $rotation = rotation.[55deg, 0deg, 0deg],                                       $debugchance = 0,                                       $debugcaller = if $DebugChance == 100 then this else null]                                       ]"/>
-              </actions>
-            </cue>
-            <cue name="Conversation_Recruitment_Sobert">
+            <cue name="Envoy_Jobs">
               <cues>
-                <cue name="Conversation_Recruitment_Sobert_Started" instantiate="true">
-                  <conditions>
-                    <event_conversation_started actor="$AgentActor"/>
-                  </conditions>
+                <cue name="DLC_Jobs_Activate_Immediately">
                   <actions>
-                    <do_if value="$AgentActor.owner != faction.player">
-                      <add_npc_line speaker="$AgentActor" line="6001" comment="Greeting for unowned agent"/>
-                      <set_value name="$fee" exact="3000Cr * ($AgentActor.$diplomacy_exp_negotiation + $AgentActor.$diplomacy_exp_espionage)"/>
-                      <substitute_text text="$HireText" source="{1002,3014}">
-                        <replace string="'$FEE$'" with="$fee.formatted.default"/>
-                      </substitute_text>
-                      <do_if value="player.money lt $fee">
-                        <set_value name="$player_cannothire" exact="{30221,3271}"/>
-                      </do_if>
-                      <do_elseif value="md.$PlayerAgentTable.keys.count ge md.Diplomacy.Start.$PlayerAgentLimit">
-                        <set_value name="$player_cannothire" exact="{1026,12808}"/>
-                      </do_elseif>
-                      <do_else>
-                        <set_value name="$player_cannothire" exact="false"/>
-                      </do_else>
-                      <add_player_choice_sub text="$HireText" section="c_hireworkforme" position="top_left" comment="Hire (fee)" selectable="if $player_cannothire then false else true" choiceparam="$fee" tooltip="if $player_cannothire then $player_cannothire else ''"/>
-                      <add_player_choice_return text="{1002,2}" position="bottom_right" comment="Goodbye"/>
-                    </do_if>
-                    <do_else/>
+                    <signal_cue cue="DLC_Enabled_Split" check="false"/>
                   </actions>
                 </cue>
-                <cue name="Agent_ConversationHired" instantiate="true">
+                <cue name="Paranid_Faction_State">
+                  <actions>
+                    <set_job_active activate="true" job="'buccaneers_envoy'"/>
+                    <set_job_active activate="true" job="'buccaneers_envoy_mission'"/>
+                  </actions>
+                  <cues>
+                    <cue name="Paranid_Faction_State_Trinity_Not_Active" onfail="cancel">
+                      <conditions>
+                        <check_value value="not faction.trinity.isactive"/>
+                      </conditions>
+                      <actions>
+                        <set_job_active activate="true" job="'paranid_envoy'"/>
+                        <set_job_active activate="true" job="'holyorder_envoy'"/>
+                        <set_job_active activate="true" job="'paranid_envoy_mission'"/>
+                        <set_job_active activate="true" job="'holyorder_envoy_mission'"/>
+                      </actions>
+                      <cues>
+                        <cue name="Paranid_Faction_State_Trinity_Activates">
+                          <conditions>
+                            <event_faction_activated faction="faction.trinity"/>
+                          </conditions>
+                          <actions>
+                            <set_job_active activate="true" job="'trinity_envoy'"/>
+                            <set_job_active activate="true" job="'trinity_envoy_mission'"/>
+                            <set_job_active activate="false" job="'paranid_envoy'" successor="'trinity_envoy'"/>
+                            <set_job_active activate="false" job="'holyorder_envoy'" successor="'trinity_envoy'"/>
+                            <set_job_active activate="false" job="'paranid_envoy_mission'" successor="'trinity_envoy_mission'"/>
+                            <set_job_active activate="false" job="'holyorder_envoy_mission'" successor="'trinity_envoy_mission'"/>
+                          </actions>
+                        </cue>
+                      </cues>
+                    </cue>
+                    <cue name="Paranid_Faction_State_Trinity_Active" onfail="cancel">
+                      <conditions>
+                        <check_value value="faction.trinity.isactive"/>
+                      </conditions>
+                      <actions>
+                        <set_job_active activate="true" job="'trinity_envoy'"/>
+                        <set_job_active activate="true" job="'trinity_envoy_mission'"/>
+                      </actions>
+                    </cue>
+                  </cues>
+                </cue>
+                <cue name="DLC_Enabled_Split">
                   <conditions>
-                    <event_conversation_next_section actor="$AgentActor" section="c_hireworkforme"/>
+                    <check_any>
+                      <event_cue_signalled/>
+                      <event_cue_signalled cue="md.Setup.Start"/>
+                    </check_any>
+                    <check_value value="md.$SplitFactions?"/>
+                    <check_value value="md.$SplitFactions.count"/>
                   </conditions>
                   <actions>
-                    <add_npc_line speaker="$AgentActor" line="6003"/>
-                    <set_value name="$fee" exact="event.param2"/>
-                    <transfer_money from="faction.player" to="faction.ownerless" amount="$fee"/>
-                    <open_menu menu="DiplomacyMenu" param="[0, 0, 'agents', [ $AgentActor ]]"/>
-                    <signal_cue_instantly cue="Recruit_Sobert"/>
+                    <signal_cue cue="DLC_Enabled_Split_Curbs" check="false"/>
                   </actions>
+                  <cues>
+                    <cue name="DLC_Enabled_Split_Curbs">
+                      <conditions>
+                        <check_any>
+                          <event_faction_activated faction="md.$SplitCurbFactions.{1}"/>
+                          <check_all>
+                            <event_cue_signalled/>
+                            <check_value value="md.$SplitCurbFactions.{1}.isactive"/>
+                          </check_all>
+                        </check_any>
+                      </conditions>
+                      <actions>
+                        <set_job_active activate="true" job="'court_envoy'"/>
+                      </actions>
+                    </cue>
+                  </cues>
                 </cue>
               </cues>
             </cue>
           </cues>
         </cue>
-        <cue name="Recruit_Sobert">
+      </cues>
+    </cue>
+  </replace>
+  <add sel="//cue[@name='Envoy_Activation']" pos="after">
+    <cue name="Sobert_Agent">
+      <conditions>
+        <event_universe_generated/>
+        <check_value value="player.galaxy.macro == macro.xu_ep2_universe_macro" comment="only in main-galaxy"/>
+      </conditions>
+      <cues>
+        <cue name="Setup_Character_CourierActor">
+          <actions>
+            <create_cue_actor name="$CourierActor" cue="namespace" macro="character_story_mini_02_courier_macro">
+              <page exact="10148"/>
+              <owner exact="faction.civilian"/>
+              <skills>
+                <skill type="management" exact="6"/>
+                <skill type="morale" exact="14"/>
+                <skill type="piloting" exact="15"/>
+                <skill type="engineering" exact="11"/>
+                <skill type="boarding" exact="14"/>
+              </skills>
+            </create_cue_actor>
+            <set_entity_traits entity="$CourierActor" missionactor="true" customhandler="true" subtitlename="false" comment="subtitlename true will be updated after introduction"/>
+            <set_entity_overrides entity="$CourierActor" title="'{30255,151}'" icon="'specialist'"/>
+          </actions>
+          <delay exact="0.5s"/>
+          <actions>
+            <signal_cue_instantly cue="md.Setup.AddStoryMentor" param="table[$story=namespace, $actor=$CourierActor]"/>
+            <signal_cue cue="Generic_Conversation_CourierActor"/>
+            <signal_cue cue="Unlock_Sobert_Agent"/>
+          </actions>
+        </cue>
+        <cue name="Generic_Conversation_CourierActor">
           <conditions>
             <event_cue_signalled/>
-            <check_value value="md.$PlayerAgentTable.keys.count lt md.Diplomacy.Start.$PlayerAgentLimit"/>
+          </conditions>
+          <cues>
+            <cue name="Generic_Conversation_CourierActor_Greeting" instantiate="true">
+              <conditions>
+                <event_conversation_started actor="$CourierActor"/>
+                <check_value value="not $CourierActorConversationReserved?"/>
+              </conditions>
+              <actions>
+                <add_npc_line speaker="$CourierActor" hidechoices="true">
+                  <text line="2001" comment="Greetings"/>
+                </add_npc_line>
+              </actions>
+            </cue>
+          </cues>
+        </cue>
+        <cue name="Unlock_Sobert_Agent">
+          <conditions>
+            <event_cue_signalled/>
           </conditions>
           <actions>
-            <set_owner object="$CourierActor" faction="faction.player"/>
-            <set_value name="md.$PlayerAgentTable.{$CourierActor}" exact="table[$State = ['hq_available', player.headquarters],                          $OriginalOwner = faction.argon,                          $Seed = $CourierActor.seed]"/>
-            <recruit_diplomacy_agent agent="$CourierActor"/>
-            <signal_cue_instantly cue="md.NPC_Agent.Update_AgentPlacement" param="[$CourierActor, ['hq_available']]"/>
-            <signal_cue_instantly cue="md.NPC_Agent.AgentCreated" param="$CourierActor"/>
+            <set_value name="$CourierActor.$diplomacy_exp_negotiation" exact="150"/>
+            <set_value name="$CourierActor.$diplomacy_exp_espionage" exact="150"/>
+            <set_value name="$AgentActor" exact="$CourierActor"/>
+            <set_entity_type entity="$CourierActor" type="entitytype.agent"/>
           </actions>
+          <cues>
+            <cue name="Agents_Unlocked">
+              <cues>
+                <cue name="Agents_Unlocked_Check" onfail="cancel">
+                  <conditions>
+                    <check_value value="cuestate.waiting != md.Diplomacy.Diplomacy_EnableAllGenericActions.state"/>
+                  </conditions>
+                  <actions>
+                    <signal_cue cue="Agents_Unlocked_Event"/>
+                  </actions>
+                </cue>
+                <cue name="Agents_Unlocked_Event">
+                  <conditions>
+                    <check_any>
+                      <event_cue_signalled/>
+                      <event_cue_signalled cue="md.Diplomacy.Diplomacy_EnableAllGenericActions"/>
+                    </check_any>
+                  </conditions>
+                  <delay exact="20min" comment="timer to not unlock immediately"/>
+                  <actions>
+                    <signal_cue cue="Recruitment_Sobert"/>
+                  </actions>
+                </cue>
+              </cues>
+            </cue>
+            <cue name="Recruitment_Sobert">
+              <conditions>
+                <event_cue_signalled/>
+              </conditions>
+              <cues>
+                <cue name="Placement_Sobert">
+                  <actions>
+                    <set_value name="$EmbassyRoom" exact="md.X4Ep1_Mentor_Subscriptions.Start.$EmbassyRoom"/>
+                    <signal_cue_instantly cue="md.NPC_Instantiation.NPC_Placement_Manager" param="['add_definition', $CourierActor, table[                                           $requestercue = namespace,                                           $priority = 100,                                           $location = $EmbassyRoom,                                           $position = position.[-7.944m, -0.0760589m, -5.559m],                                           $rotation = rotation.[55deg, 0deg, 0deg],                                           $debugchance = 0,                                           $debugcaller = null]                                           ]"/>
+                  </actions>
+                </cue>
+                <cue name="Conversation_Recruitment_Sobert">
+                  <cues>
+                    <cue name="Conversation_Recruitment_Sobert_Started" instantiate="true">
+                      <conditions>
+                        <event_conversation_started actor="$AgentActor"/>
+                      </conditions>
+                      <actions>
+                        <do_if value="$AgentActor.owner != faction.player">
+                          <add_npc_line speaker="$AgentActor" line="6001" comment="Greeting for unowned agent"/>
+                          <set_value name="$fee" exact="3000Cr * ($AgentActor.$diplomacy_exp_negotiation + $AgentActor.$diplomacy_exp_espionage)"/>
+                          <substitute_text text="$HireText" source="{1002,3014}">
+                            <replace string="'$FEE$'" with="$fee.formatted.default"/>
+                          </substitute_text>
+                          <do_if value="player.money lt $fee">
+                            <set_value name="$player_cannothire" exact="{30221,3271}"/>
+                          </do_if>
+                          <do_elseif value="md.$PlayerAgentTable.keys.count ge md.Diplomacy.Start.$PlayerAgentLimit">
+                            <set_value name="$player_cannothire" exact="{1026,12808}"/>
+                          </do_elseif>
+                          <do_else>
+                            <set_value name="$player_cannothire" exact="false"/>
+                          </do_else>
+                          <add_player_choice_sub text="$HireText" section="c_hireworkforme" position="top_left" comment="Hire (fee)" selectable="if $player_cannothire then false else true" choiceparam="$fee" tooltip="if $player_cannothire then $player_cannothire else ''"/>
+                          <add_player_choice_return text="{1002,2}" position="bottom_right" comment="Goodbye"/>
+                        </do_if>
+                        <do_else/>
+                      </actions>
+                    </cue>
+                    <cue name="Agent_ConversationHired" instantiate="true">
+                      <conditions>
+                        <event_conversation_next_section actor="$AgentActor" section="c_hireworkforme"/>
+                      </conditions>
+                      <actions>
+                        <add_npc_line speaker="$AgentActor" line="6003"/>
+                        <set_value name="$fee" exact="event.param2"/>
+                        <transfer_money from="faction.player" to="faction.ownerless" amount="$fee"/>
+                        <open_menu menu="DiplomacyMenu" param="[0, 0, 'agents', [ $AgentActor ]]"/>
+                        <signal_cue_instantly cue="Recruit_Sobert"/>
+                      </actions>
+                    </cue>
+                  </cues>
+                </cue>
+              </cues>
+            </cue>
+            <cue name="Recruit_Sobert">
+              <conditions>
+                <event_cue_signalled/>
+                <check_value value="md.$PlayerAgentTable.keys.count lt md.Diplomacy.Start.$PlayerAgentLimit"/>
+              </conditions>
+              <actions>
+                <set_owner object="$CourierActor" faction="faction.player"/>
+                <set_value name="md.$PlayerAgentTable.{$CourierActor}" exact="table[$State = ['hq_available', player.headquarters],                              $OriginalOwner = faction.argon,                              $Seed = $CourierActor.seed]"/>
+                <recruit_diplomacy_agent agent="$CourierActor"/>
+                <signal_cue_instantly cue="md.NPC_Agent.Update_AgentPlacement" param="[$CourierActor, ['hq_available']]"/>
+                <signal_cue_instantly cue="md.NPC_Agent.AgentCreated" param="$CourierActor"/>
+              </actions>
+            </cue>
+          </cues>
         </cue>
       </cues>
     </cue>

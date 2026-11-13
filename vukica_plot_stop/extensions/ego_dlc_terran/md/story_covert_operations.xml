@@ -1,4 +1,4 @@
 <?xml version='1.0' encoding='utf-8'?>
 <diff>
-  <replace sel="//actions/set_value[@name='$story_covert_ops_neutral']/@exact">true</replace>
+  <remove sel="//mdscript/cues"/>
 </diff>

@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <remove sel="//macro[@name='Zone005_Cluster_31_Sector001_macro']/connections/connection/macro/properties"/>
+  <remove sel="//macro[@name='Zone006_Cluster_48_Sector001_macro']/connections/connection/macro/properties"/>
+  <remove sel="//macro[@name='Zone001_Cluster_721_Sector001_macro']/connections/connection/macro/properties"/>
+</diff>

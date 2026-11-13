@@ -4,7 +4,7 @@
 	<dependency id="ego_dlc_terran" optional="false" name="Cradle of Humanity"/>
 	<dependency id="ego_dlc_pirate"  optional="false" name="Tides of Avarice"/>
 	<dependency id="ego_dlc_boron" optional="false" name="Kingdom End"/>
-	<dependency id="ego_dlc_timelines"  optional="true" name="Timelines"/>
-	<dependency id="ego_dlc_mini_01" optional="true" name="Hyperion" />
-	<dependency id="ego_dlc_mini_02" optional="true" name="Envoy" />
+	<dependency id="ego_dlc_timelines"  optional="false" name="Timelines"/>
+	<dependency id="ego_dlc_mini_01" optional="false" name="Hyperion" />
+	<dependency id="ego_dlc_mini_02" optional="false" name="Envoy" />
 </content>

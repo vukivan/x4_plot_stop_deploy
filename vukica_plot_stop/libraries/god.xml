@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <diff>
   <remove sel="//station[@id='x4ep1_gamestart_scientist_hq_coh']"/>
+  <remove sel="//station[@id='bor_khaakscrap_01']/@startactive"/>
   <replace sel="//station[@id='gs_boron2_hq']/@owner">player</replace>
 </diff>

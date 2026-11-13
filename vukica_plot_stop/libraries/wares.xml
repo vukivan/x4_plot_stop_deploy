@@ -359,25 +359,14 @@
   <replace sel="//ware[@id='weapon_par_l_expeditionary_01_mk1']/@tags">equipment weapon</replace>
   <replace sel="//ware[@id='weapon_par_l_expeditionary_01_mk1']/restriction/@licence">capitalequipment</replace>
   <replace sel="//ware[@id='engine_arg_m_corvette_01_mk1']/@tags">engine equipment</replace>
-  <replace sel="//ware[@id='engine_arg_m_corvette_01_mk1']/restriction/@licence">capitalequipment</replace>
   <replace sel="//ware[@id='engine_arg_m_corvette_01_mk2']/@tags">engine equipment</replace>
-  <replace sel="//ware[@id='engine_arg_m_corvette_01_mk2']/restriction/@licence">capitalequipment</replace>
   <replace sel="//ware[@id='engine_tel_m_corvette_01_mk1']/@tags">engine equipment</replace>
-  <replace sel="//ware[@id='engine_tel_m_corvette_01_mk1']/restriction/@licence">capitalequipment</replace>
   <replace sel="//ware[@id='engine_tel_m_corvette_01_mk2']/@tags">engine equipment</replace>
-  <replace sel="//ware[@id='engine_tel_m_corvette_01_mk2']/restriction/@licence">capitalequipment</replace>
   <replace sel="//ware[@id='shield_gen_m_corvette_01_mk1']/@tags">equipment shield</replace>
-  <replace sel="//ware[@id='shield_gen_m_corvette_01_mk1']/restriction/@licence">capitalequipment</replace>
   <replace sel="//ware[@id='ship_gen_m_corvette_01']/@tags">ship</replace>
-  <replace sel="//ware[@id='ship_gen_m_corvette_01']/restriction/@licence">capitalship</replace>
   <replace sel="//ware[@id='ship_gen_m_corvette_02']/@tags">ship</replace>
-  <replace sel="//ware[@id='ship_gen_m_corvette_02']/restriction/@licence">capitalship</replace>
   <replace sel="//ware[@id='turret_gen_m_disabler_01_mk1']/@tags">equipment turret</replace>
-  <replace sel="//ware[@id='turret_gen_m_disabler_01_mk1']/restriction/@licence">capitalequipment</replace>
   <replace sel="//ware[@id='turret_gen_m_shieldpierce_01_mk1']/@tags">equipment turret</replace>
-  <replace sel="//ware[@id='turret_gen_m_shieldpierce_01_mk1']/restriction/@licence">capitalequipment</replace>
   <replace sel="//ware[@id='weapon_gen_m_disabler_01_mk1']/@tags">equipment weapon</replace>
-  <replace sel="//ware[@id='weapon_gen_m_disabler_01_mk1']/restriction/@licence">capitalequipment</replace>
   <replace sel="//ware[@id='weapon_gen_m_shieldpierce_01_mk1']/@tags">equipment weapon</replace>
-  <replace sel="//ware[@id='weapon_gen_m_shieldpierce_01_mk1']/restriction/@licence">capitalequipment</replace>
 </diff>

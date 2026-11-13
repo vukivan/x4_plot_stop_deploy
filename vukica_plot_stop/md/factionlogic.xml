@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <replace sel="//cue[@name='BoronFactionLogic_Manager']/param[@name='PreferredHQSpaceMacro']/@value">[macro.Cluster_606_Sector001_macro]</replace>
+  <replace sel="//cue[@name='BoronFactionLogic_Manager']/param[@name='PreferredHQSpaceMacro']/@comment">Kingdom End I</replace>
+  <remove sel="//cue[@name='BoronFactionLogic_Manager']/param[@name='EconomicallyExcludedSectorMacros']"/>
+  <remove sel="//cue[@name='BoronFactionLogic_Manager']/param[@name='PeriodicCallback']"/>
+  <remove sel="//cue[@name='BoronRelocateHQ']"/>
+  <remove sel="//cue[@name='PeriodicCallback']"/>
+</diff>

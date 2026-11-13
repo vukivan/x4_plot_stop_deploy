@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <remove sel="//connection[@name='connection_ClusterGate605To606']/macro/properties"/>
+  <remove sel="//macro[@name='Zone002_Cluster_606_Sector003_macro']/connections/connection/macro/properties"/>
+  <remove sel="//macro[@name='Zone003_Cluster_604_Sector001_macro']/connections/connection/macro/properties"/>
+  <remove sel="//macro[@name='Zone002_Cluster_601_Sector001_macro']/connections/connection/macro/properties"/>
+  <remove sel="//properties"/>
+</diff>

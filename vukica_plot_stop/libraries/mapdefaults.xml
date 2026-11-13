@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <replace sel="//dataset[@macro='Cluster_601_macro']/properties/area/@tags">allowrandomanomaly</replace>
+  <replace sel="//dataset[@macro='Cluster_602_macro']/properties/area/@tags">allowrandomanomaly</replace>
+  <replace sel="//dataset[@macro='Cluster_603_macro']/properties/area/@tags">allowrandomanomaly</replace>
+  <replace sel="//dataset[@macro='Cluster_604_macro']/properties/area/@tags">allowrandomanomaly</replace>
+</diff>

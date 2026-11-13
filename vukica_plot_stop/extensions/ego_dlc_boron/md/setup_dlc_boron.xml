@@ -1,8 +1,148 @@
 <?xml version='1.0' encoding='utf-8'?>
 <diff>
+  <remove sel="//cue[@name='Setup']/actions/append_to_list"/>
+  <replace sel="//actions/set_value[@name='md.Diplomacy.Start.$DiplomacyFactionTable.{faction.boron}']/@exact">table[$DiplomatAvailable = ['yes', tag.group_13],                                                                                                     $EventCapable = 'yes',                                                                                                     $InateAgentExperience = 'negotiation']</replace>
+  <remove sel="//actions/set_faction_diplomacy_exclusion[@otherfaction='faction.boron'][@faction='faction.argon']"/>
+  <remove sel="//actions/set_faction_diplomacy_exclusion[@otherfaction='faction.boron'][@faction='faction.holyorder']"/>
+  <remove sel="//actions/set_faction_diplomacy_exclusion[@otherfaction='faction.boron'][@faction='faction.paranid']"/>
+  <remove sel="//actions/set_faction_diplomacy_exclusion[@otherfaction='faction.boron'][@faction='faction.teladi']"/>
+  <remove sel="//actions/set_faction_diplomacy_exclusion"/>
+  <remove sel="//actions/do_if[@value='md.$TerranEarthFactions.count']"/>
+  <remove sel="//actions/do_if[@value='md.$SplitPatriarchyFactions.count']"/>
+  <remove sel="//actions/set_userdata"/>
+  <remove sel="//cue[@name='X4ep1_Mentor_Subscription_SetUp']"/>
   <replace sel="//library/actions/set_value/@exact">false</replace>
-  <replace sel="//actions/set_value[@name='$story_queendom_returned']/@exact">true</replace>
-  <replace sel="//actions/set_value[@name='$story_boron_wayfinder']/@exact">false</replace>
+  <remove sel="//cue[@name='BoronFaction_States']/actions/set_space_faction_logic_allowed[@space='$WatchfulGazeSector']"/>
+  <remove sel="//actions/set_value[@name='$story_queendom_returned']"/>
+  <remove sel="//cue[@name='BoronFaction_States']/actions/set_value"/>
+  <remove sel="//find_highway"/>
+  <remove sel="//cue[@name='BoronFaction_States']/actions/do_for_each[@name='$highway']"/>
+  <add sel="//actions/remove_value[@name='$AtreusCloudGates']" pos="after">
+    <set_space_economy exact="0.75" space="$Cluster_GreatReef"/>
+  </add>
+  <add sel="//cue[@name='BoronFaction_States']/actions/set_space_economy" pos="after">
+    <set_space_economy exact="0.5" space="$Cluster_OceanOfFantasy"/>
+  </add>
+  <add sel="//cue[@name='BoronFaction_States']/actions/set_space_economy[@exact='0.5']" pos="after">
+    <signal_cue cue="ALI_Station_Phase2" comment="ALI SoD gate appendix" check="false"/>
+  </add>
+  <add sel="//cue[@name='BoronFaction_States']/actions/signal_cue" pos="after">
+    <add_licence faction="faction.hatikvah" licencefaction="faction.boron" type="generaluseship"/>
+  </add>
+  <add sel="//cue[@name='BoronFaction_States']/actions/add_licence" pos="after">
+    <add_licence faction="faction.hatikvah" licencefaction="faction.boron" type="generaluseequipment"/>
+  </add>
+  <add sel="//cue[@name='BoronFaction_States']/actions/add_licence[@faction='faction.hatikvah'][@licencefaction='faction.boron'][@type='generaluseequipment']" pos="after">
+    <add_licence faction="faction.hatikvah" licencefaction="faction.boron" type="militaryship"/>
+  </add>
+  <add sel="//cue[@name='BoronFaction_States']/actions/add_licence[@faction='faction.hatikvah'][@licencefaction='faction.boron'][@type='militaryship']" pos="after">
+    <add_licence faction="faction.hatikvah" licencefaction="faction.boron" type="militaryequipment"/>
+  </add>
+  <add sel="//cue[@name='BoronFaction_States']/actions/add_licence[@faction='faction.hatikvah'][@licencefaction='faction.boron'][@type='militaryequipment']" pos="after">
+    <find_gate name="$SanctuaryOfDarknessGates" multiple="true" space="$SoDSector" comment="do not check for active false or true as a gamestart can change such starting conditions"/>
+  </add>
+  <add sel="//find_gate[@name='$SanctuaryOfDarknessGates'][@multiple='true'][@comment='do not check for active false or true as a gamestart can change such starting conditions']" pos="after">
+    <do_for_each name="$g" in="$SanctuaryOfDarknessGates">
+      <do_if value=" ($g.exit.exists) and ($g.exit.sector == $ToweringWaveSector)">
+        <set_value name="$SoD_ToweringWaveGate" exact="$g"/>
+        <set_value name="$ToweringWave_SoDGate" exact="$g.exit"/>
+      </do_if>
+      <do_if value=" ($g.exit.exists) and ($g.exit.sector == $GreatReefSector)">
+        <set_value name="$SoD_GreatReefSectorGate" exact="$g"/>
+      </do_if>
+    </do_for_each>
+  </add>
+  <add sel="//do_for_each[@name='$g'][@in='$SanctuaryOfDarknessGates'][2]" pos="after">
+    <remove_value name="$SanctuaryOfDarknessGates"/>
+  </add>
+  <remove sel="//cue[@name='BoronFaction_States']/patch[@sinceversion='2']"/>
+  <replace sel="//cue[@name='DEBUG_BoronFaction_ActivateKingdomEnd']">
+    <cue name="Split_Raid_Handling">
+      <cues>
+        <cue name="Check_For_SplitShips" instantiate="true" checkinterval="5min">
+          <conditions>
+            <count_ships result="$SplitRaidShips" job="'zyarth_corvette_m_raid'" multiple="true" space="$HereticsEndSector" commandeerable="true"/>
+          </conditions>
+          <actions>
+            <do_for_each name="$RaidCommander" in="$SplitRaidShips">
+              <do_any>
+                <set_value name="this.$Destination" exact="$WatchfulGazeSector" weight="3"/>
+                <set_value name="this.$Destination" exact="$BarrenShoresSector" weight="2"/>
+                <set_value name="this.$Destination" exact="$GreatReefSector" weight="1"/>
+              </do_any>
+              <commandeer_object object="$RaidCommander"/>
+              <cancel_all_orders object="$RaidCommander"/>
+              <create_order object="$RaidCommander" id="'MoveGeneric'">
+                <param name="destination" value="this.$Destination"/>
+              </create_order>
+              <create_order object="$RaidCommander" id="'Patrol'" default="true">
+                <param name="space" value="this.$Destination"/>
+              </create_order>
+            </do_for_each>
+          </actions>
+        </cue>
+      </cues>
+    </cue>
+  </replace>
+  <remove sel="//cue[@name='DEBUG_BoronFaction_ActivateEverything']"/>
+  <remove sel="//cue[@name='BoronFaction_Rename_ProvincesAdrift']"/>
+  <remove sel="//cue[@name='Boron_Gates_Open_HereticsEnd']"/>
+  <remove sel="//cue[@name='Boron_Gates_Open_KingdomEnd']"/>
+  <remove sel="//cue[@name='Boron_Gates_Open_RemainingSystems']"/>
+  <replace sel="//cue[@name='Condition_BOR_Queendom_Check']">
+    <cue name="Alliance_War_Trinity">
+      <cues>
+        <cue name="Alliance_War_Trinity_Check" onfail="cancel" comment="check if the event completed before we start listening">
+          <conditions>
+            <cue_is_complete cue="md.Story_Paranid.Tri_War_Diplomatic_Change"/>
+          </conditions>
+          <actions>
+            <signal_cue cue="Alliance_War_Trinity_Event"/>
+          </actions>
+        </cue>
+        <cue name="Alliance_War_Trinity_Event">
+          <conditions>
+            <check_any>
+              <event_cue_signalled/>
+              <event_cue_signalled cue="md.Story_Paranid.Tri_War_Diplomatic_Change"/>
+              <event_cue_completed cue="md.Story_Paranid.Tri_War_Diplomatic_Change"/>
+            </check_any>
+            <check_value value="md.Story_Paranid.Start.$TranslatedWarTargets.indexof.{faction.argon}"/>
+          </conditions>
+          <actions>
+            <set_faction_relation faction="faction.trinity" otherfaction="faction.boron" value="faction.trinity.relation.killmilitary.max"/>
+          </actions>
+        </cue>
+      </cues>
+    </cue>
+  </replace>
+  <remove sel="//cue[@name='Condition_BOR_Queendom_Event']"/>
+  <remove sel="//cue[@name='Unlock_Faction_Diplomacy']"/>
+  <remove sel="//cue[@name='Boron_Jobs_ActivateSplitJobs']"/>
+  <remove sel="//cue[@name='Split_Raid_Handling'][2]"/>
+  <remove sel="//cue[@name='BoronFaction_Jobs_HatikvahPatrols']"/>
+  <remove sel="//cue[@name='BoronFaction_Jobs_RiptideSmuggler']"/>
+  <remove sel="//cue[@name='ArgonFaction_Jobs_BoronDefender']"/>
+  <remove sel="//cue[@name='BoronFaction_Jobs_ArgonDefender']"/>
+  <remove sel="//cue[@name='BoronFaction_Jobs_ArgonDefender_FactionChangeListener']/conditions"/>
+  <replace sel="//cue[@name='BoronFaction_Jobs_ArgonDefender_FactionChange']/cues/cue/actions/set_job_active[@activate='false'][1]/@activate">true</replace>
+  <replace sel="//cue[@name='BoronFaction_Jobs_ArgonDefender_FactionChange']/cues/cue/actions/set_job_active[@activate='true']/@job">'boron_carrier_patrol_xl_argon'</replace>
+  <replace sel="//cue[@name='BoronFaction_Jobs_ArgonDefender_FactionChange']/cues/cue/actions/set_job_active[@activate='false'][1]/@activate">true</replace>
+  <replace sel="//cue[@name='BoronFaction_Jobs_ArgonDefender_FactionChange']/cues/cue/actions/set_job_active[@activate='true'][2]/@job">'argon_destroyer_patrol_l_boron'</replace>
+  <remove sel="//cue[@name='BoronFaction_Jobs_ArgonDefender_FactionChange']/cues/cue/actions/set_job_active[@activate='false']"/>
+  <remove sel="//cue[@name='BoronFaction_Jobs_InitialJobs']"/>
+  <remove sel="//cue[@name='BoronFaction_Jobs_Border']"/>
+  <remove sel="//cue[@name='BoronFaction_ActivateHighway_SoD']"/>
+  <remove sel="//assert"/>
+  <remove sel="//cue[@name='GreatReef_DEBUG']"/>
+  <remove sel="//cue[@name='GreatReefShipyard_Customgamestart']"/>
+  <remove sel="//check_value[@value='not BoronFaction_States.$story_boron_wayfinder and not BoronFaction_States.$story_queendom_returned']"/>
+  <remove sel="//cue[@name='GreatReefShipyard_DEBUG']"/>
+  <remove sel="//cue[@name='Boron_Prelude_Start_Handlers']"/>
+  <remove sel="//cue[@name='Boron_Prelude_Approach_Handler']"/>
+  <remove sel="//cue[@name='Boron_Prelude_Approached_Gate_Handler']"/>
+  <remove sel="//cue[@name='Boron_Prelude_Approached_Gate']"/>
+  <remove sel="//cue[@name='BoronGateDND']"/>
   <add sel="//cue[@name='WaresAllocationPatch_KE']" pos="before">
     <cue name="WatchfulGaze_Derelict" namespace="this" mapeditor="false">
       <conditions>

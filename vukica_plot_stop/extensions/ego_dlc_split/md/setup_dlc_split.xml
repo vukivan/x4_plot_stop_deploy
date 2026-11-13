@@ -1,5 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <diff>
+  <remove sel="//actions/do_if[@value='md.$DLCBoronFactions.count']"/>
+  <remove sel="//do_if[@value='md.$DLCBoronFactions? and md.$DLCBoronFactions.count ge 1']"/>
   <remove sel="//cue[@name='Gate_PlayerApproach']"/>
   <remove sel="//cue[@name='Gate_intro_Debug2']"/>
   <remove sel="//cue[@name='Gate_Intro']"/>

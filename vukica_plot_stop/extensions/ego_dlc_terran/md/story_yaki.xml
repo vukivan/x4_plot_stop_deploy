@@ -1,44 +1,4 @@
 <?xml version='1.0' encoding='utf-8'?>
 <diff>
-  <replace sel="//actions/set_value[@name='$story_yaki_complete']/@exact">true</replace>
-  <replace sel="//actions/set_value[@name='$HasCustomGamestartSkip']/@exact">true</replace>
-  <remove sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/@checkinterval"/>
-  <remove sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/conditions"/>
-  <remove sel="//do_if/signal_cue_instantly[@param='tag.trophy_story_yaki_gladius']"/>
-  <remove sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions/do_if/signal_cue_instantly"/>
-  <add sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions/do_if/do_if" pos="before">
-    <set_faction_relation faction="faction.yaki" otherfaction="faction.loanshark" value="faction.yaki.relation.neutral.mid"/>
-  </add>
-  <add sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions/do_if/do_if" pos="before">
-    <set_faction_relation faction="faction.yaki" otherfaction="faction.scavenger" value="faction.yaki.relation.neutral.mid"/>
-  </add>
-  <add sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions/do_if/do_if" pos="before">
-    <set_faction_relation faction="faction.yaki" otherfaction="faction.scaleplate" value="faction.yaki.relation.neutral.mid"/>
-  </add>
-  <add sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions/do_if/do_if" pos="before">
-    <set_faction_relation faction="faction.yaki" otherfaction="faction.hatikvah" value="faction.yaki.relation.neutral.mid"/>
-  </add>
-  <add sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions/do_if/do_if" pos="before">
-    <set_faction_relation faction="faction.yaki" otherfaction="faction.kaori" value="faction.yaki.relation.neutral.mid"/>
-  </add>
-  <add sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions/do_if/do_if" pos="before">
-    <do_if value="faction.yaki.relationto.{faction.player} lt faction.yaki.relation.neutral.mid and player.module != 'custom_creative'">
-      <set_faction_relation faction="faction.yaki" otherfaction="faction.player" value="faction.yaki.relation.neutral.mid"/>
-    </do_if>
-  </add>
-  <replace sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions/do_if/run_actions">
-    <do_if value="md.$DLCBoronFactions?">
-      <do_for_each in="md.$DLCBoronFactions" name="$CurrentFaction">
-        <set_faction_relation faction="faction.yaki" otherfaction="$CurrentFaction" value="faction.yaki.relation.neutral.mid"/>
-      </do_for_each>
-    </do_if>
-  </replace>
-  <add sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/actions/do_if/do_if[@value='md.$DLCBoronFactions?']" pos="after">
-    <run_actions ref="md.Diplomacy.Diplomacy_ActivateFactionLibrary">
-      <param name="Faction" value="faction.yaki"/>
-      <param name="DiplomatCapable" value="true"/>
-      <param name="EventCapable" value="false"/>
-    </run_actions>
-  </add>
-  <remove sel="//cue[@name='Handle_Custom_Gamestart_Skip']/cues/cue/patch"/>
+  <remove sel="//mdscript/cues"/>
 </diff>

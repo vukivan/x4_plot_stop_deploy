@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <replace sel="//faction[@id='player']/relations/relation[@relation='-0.32'][@faction='yaki']/@relation">-0.032</replace>
+  <remove sel="//faction[@id='alliance']/relations/relation[@relation='-0.32']"/>
+  <remove sel="//faction[@id='antigone']/relations/relation[@relation='-0.32']"/>
+  <remove sel="//faction[@id='argon']/relations/relation[@relation='-0.32'][@faction='yaki']"/>
+  <remove sel="//faction[@id='buccaneers']/relations/relation[@relation='-0.32'][@faction='yaki']"/>
+  <remove sel="//faction[@id='hatikvah']/relations/relation[@relation='-0.32']"/>
+  <remove sel="//faction[@id='ministry']/relations/relation[@relation='-0.32'][@faction='yaki']"/>
+  <remove sel="//faction[@id='scaleplate']/relations/relation[@relation='-0.32'][@faction='yaki']"/>
+  <remove sel="//faction[@id='teladi']/relations/relation[@relation='-0.32']"/>
+  <remove sel="//faction[@id='court']/relations/relation[@relation='-0.32'][@faction='yaki']"/>
+  <remove sel="//faction[@id='fallensplit']/relations/relation[@relation='-0.32'][@faction='yaki']"/>
+  <remove sel="//faction[@id='freesplit']/relations/relation[@relation='-0.32']"/>
+  <remove sel="//faction[@id='split']/relations/relation[@relation='-0.32'][@faction='yaki']"/>
+  <add sel="//faction[@id='terran'][@name='{20203,3001}'][@prefixname='{20203,3004}'][@description='{20203,3002}'][@shortname='{20203,3003}'][@spacename='{20203,3005}'][@primaryrace='terran'][@behaviourset='default'][@homespacename='{20203,3006}'][@policefaction='terran'][@tags='claimspace economic police privateloadout privateship protective standard watchdoguser']/relations/relation[@relation='-0.011'][@faction='scavenger']" pos="after">
+    <relation faction="boron" relation="-0.032"/>
+  </add>
+  <remove sel="//relation[@relation='-0.32'][@faction='alliance']"/>
+  <remove sel="//relation[@relation='-0.32'][@faction='antigone']"/>
+  <remove sel="//faction[@id='yaki']/relations/relation[@relation='-0.32'][@faction='argon']"/>
+  <remove sel="//faction[@id='yaki']/relations/relation[@relation='-0.32'][@faction='buccaneers']"/>
+  <remove sel="//faction[@id='yaki']/relations/relation[@relation='-0.32'][@faction='court']"/>
+  <remove sel="//faction[@id='yaki']/relations/relation[@relation='-0.32'][@faction='fallensplit']"/>
+  <remove sel="//relation[@relation='-0.32'][@faction='freesplit']"/>
+  <remove sel="//relation[@relation='-0.32'][@faction='hatikvah']"/>
+  <remove sel="//faction[@id='yaki']/relations/relation[@relation='-0.32'][@faction='ministry']"/>
+  <remove sel="//faction[@id='yaki']/relations/relation[@relation='-0.32'][@faction='player']"/>
+  <remove sel="//faction[@id='yaki']/relations/relation[@relation='-0.32'][@faction='scaleplate']"/>
+  <remove sel="//faction[@id='yaki']/relations/relation[@relation='-0.32'][@faction='split']"/>
+  <remove sel="//relation[@relation='-0.32'][@faction='teladi']"/>
+  <remove sel="//faction[@id='yaki']/relations/relation[@relation='-0.32'][@faction='loanshark']"/>
+  <remove sel="//faction[@id='yaki']/relations/relation[@relation='-0.32'][@faction='scavenger']"/>
+  <remove sel="//faction[@id='yaki']/relations/relation[@relation='-0.32'][@faction='boron']"/>
+  <remove sel="//faction[@id='yaki']/relations/relation[@relation='-0.32'][@faction='kaori']"/>
+  <remove sel="//faction[@id='loanshark']/relations/relation[@relation='-0.32'][@faction='yaki']"/>
+  <remove sel="//faction[@id='scavenger']/relations/relation[@relation='-0.32'][@faction='yaki']"/>
+  <remove sel="//faction[@id='boron']/relations/relation[@relation='-0.032'][@faction='terran']"/>
+  <remove sel="//faction[@id='boron']/relations/relation[@relation='-0.32'][@faction='yaki']"/>
+  <remove sel="//faction[@id='kaori']/relations/relation[@relation='-0.32'][@faction='yaki']"/>
+</diff>

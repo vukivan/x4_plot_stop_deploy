@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <replace sel="//do_if[@value='md.$ArgonAllianceFailed?']/do_if">
+    <set_value name="$tooltip_argon" exact="{30220,10063} + ' ' + {30220,10053}"/>
+  </replace>
+  <remove sel="//do_if[@value='md.$ArgonAllianceFailed?']/do_else"/>
+  <replace sel="//do_else[@comment='not md.$ArgonAllianceFailed?']/do_if">
+    <set_value name="$tooltip_argon" exact="{30220,10064}"/>
+  </replace>
+  <remove sel="//do_else[@comment='not md.$ArgonAllianceFailed?']/do_else"/>
+  <replace sel="//cue[@name='Tri_War_Briefing_Conversation_Main']/actions/add_player_choice[@position='top_left']/@text">if (md.$DLCBoronFactions.count) then {30220,10041} else {30220,10032}</replace>
+</diff>

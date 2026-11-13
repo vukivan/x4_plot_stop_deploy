@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<diff>
+  <remove sel="//cue[@name='Start']/@version"/>
+  <replace sel="//cue[@name='Start']/actions">
+    <actions>
+      </actions>
+  </replace>
+  <replace sel="//cue[@name='Start']/patch[@sinceversion='2']">
+    <cues>
+      <cue name="SetupMap">
+        <actions>
+          <set_value name="$InitialMap" exact="[                        macro.cluster_102_sector001_macro,                        macro.cluster_101_sector001_macro,                        macro.cluster_100_sector001_macro,                        ]"/>
+          <run_actions ref="md.LIB_Generic.UncoverMap_SectorsAndGates">
+            <param name="InitialMap" value="$InitialMap"/>
+            <param name="UncoverStationFaction" value="faction.boron"/>
+            <param name="UncoverShipyardsAndWharfs" value="true" comment="optional"/>
+            <param name="UncoverTradeStations" value="true" comment="optional"/>
+            <param name="UncoverHighways" value="true"/>
+          </run_actions>
+        </actions>
+      </cue>
+    </cues>
+  </replace>
+  <remove sel="//cue[@name='Start']/patch"/>
+  <remove sel="//cues[2]"/>
+  <remove sel="//cue[@name='PatchSVCourtRelations']"/>
+</diff>
