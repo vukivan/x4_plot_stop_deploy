@@ -135,9 +135,13 @@
   <remove sel="//cue[@name='BoronFaction_ActivateHighway_SoD']"/>
   <remove sel="//assert"/>
   <remove sel="//cue[@name='GreatReef_DEBUG']"/>
-  <remove sel="//cue[@name='GreatReefShipyard_Customgamestart']"/>
-  <remove sel="//check_value[@value='not BoronFaction_States.$story_boron_wayfinder and not BoronFaction_States.$story_queendom_returned']"/>
-  <remove sel="//cue[@name='GreatReefShipyard_DEBUG']"/>
+  <replace sel="//cue[@name='GreatReefShipyard_Customgamestart']/@name">GreatReefShipyard_Spawn_Operational</replace>
+  <remove sel="//cue[@name='GreatReefShipyard_Spawn_Operational']/@onfail"/>
+  <add sel="//cue[@name='GreatReefShipyard_Spawn_Operational']" type="@comment">plot stop: vanilla custom-gamestart path, unconditional</add>
+  <remove sel="//cue[@name='GreatReefShipyard_Spawn_Operational']/conditions"/>
+  <remove sel="//cue[@name='GreatReefShipyard_Spawn_Operational']/actions/cancel_cue"/>
+  <remove sel="//cue[@name='LocationCheck']"/>
+  <remove sel="//cue[@name='GreatReefShipyard_Spawn']"/>
   <remove sel="//cue[@name='Boron_Prelude_Start_Handlers']"/>
   <remove sel="//cue[@name='Boron_Prelude_Approach_Handler']"/>
   <remove sel="//cue[@name='Boron_Prelude_Approached_Gate_Handler']"/>
