@@ -1,4 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <diff>
-  <remove sel="//mdscript/cues"/>
+  <replace sel="//mdscript/cues/cue">
+    <cue name="Prelude_Teladi_Trespassing" comment="signalled by xup on new game / load; does nothing">
+      <conditions>
+        <event_cue_signalled/>
+      </conditions>
+    </cue>
+  </replace>
+  <add sel="//cue" pos="after">
+    <cue name="Prelude_Approach_Cutscene_Started" comment="no conditions: completes at start, so xup's Teladi_Trespassing_LoadGame cancels cleanly"/>
+  </add>
 </diff>

@@ -7,4 +7,5 @@
 	<dependency id="ego_dlc_timelines"  optional="false" name="Timelines"/>
 	<dependency id="ego_dlc_mini_01" optional="false" name="Hyperion" />
 	<dependency id="ego_dlc_mini_02" optional="false" name="Envoy" />
+	<dependency id="xup_dlc_terran" optional="true" name="X4 Upgrade Project - Cradle of Humanity" />
 </content>
