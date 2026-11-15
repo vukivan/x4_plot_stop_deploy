@@ -2,15 +2,26 @@
 
 An *X4: Foundations* mod that removes the DLC story plots so their regions and gamestarts are available without playing through the storylines.
 
-## Compatibility
+## Requirements
 
-### X4 Upgrade Project – Cradle of Humanity (`xup_dlc_terran`)
+All DLC. Yes... Even Timelines. I may loosen that in the future, but this is what I have right now.
 
-Compatible. That mod's `md/terran_accelerator_reboot.xml` signals and checks cues in the Terran prelude story (`md.Story_Terran_Prelude`), which Plot Stop removes. To keep its references resolving without errors, Plot Stop:
+## What it actually does?
 
-- keeps two empty stub cues in `Story_Terran_Prelude`:
-  - `Prelude_Teladi_Trespassing` — listens for xup's signal and does nothing.
-  - `Prelude_Approach_Cutscene_Started` — completes at start, so xup's load-game handler cancels cleanly.
-- declares an optional dependency on `xup_dlc_terran`, so Plot Stop loads after it when both are installed. Without xup, Plot Stop works as normal.
+Removes *most* vanilla plots (split, paranid, erlking, diplomacy etc. are left in for now).
+Getting the HQ is now deliberate. You need to have 1M credits and a station. Then Boso himself will send you a message.
+Then you have to accept the mission. Boso will suggest that you place a beacon somewhere.
+HQ will warp in soon after placing the beacon.
+Dal will appear once you have the HQ.
+In custom start you can opt in to play the Hatikvah plot (if you place HQ with dal the you skip it entirely) - this is also temporary, Dal will be disabled soon.
 
-The prelude plot itself stays removed. The stub cue names must not change.
+Terran plots area removed. (status quo, you get the terraforming research, and yaki become a "real" faction)
+KE plot is removed. Hydra regal is a blueprint and Boron systems start connected.
+Pirate plots are turned off, they don't do anything anyway. Astrid is made purchasable (IIRC as a blueprint)
+You can buy envoy and hyperion and their blueprints!
+Timelines ships are available as blueprints! I removed most limits for those ships.
+
+Boron gamestarts are reworked to reflect the new situation
+
+NOT COMPATIBLE with mods that touch plot files!
+Compatible with XUP.
